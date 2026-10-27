@@ -1,0 +1,14 @@
+{
+  "graph_nodes": 7816,
+  "graph_edges": 8112,
+  "connected_components": 10,
+  "snap_distance_m": {
+    "guoen-temple": 10.5,
+    "huineng-residence": 103.1,
+    "longshan-spring": 18.7,
+    "chanyu-town": 105.6
+  },
+  "routes_created": 6,
+  "failures": [],
+  "status": "DEVELOPMENT_ONLY"
+}

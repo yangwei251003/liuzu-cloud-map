@@ -1,0 +1,39 @@
+-- Compensating rollback for 003. Run only through scripts/rollback-database.mjs
+-- with an explicit target and ALLOW_DATABASE_ROLLBACK=1 after a verified backup.
+
+DROP TABLE IF EXISTS operational_notices;
+DROP TABLE IF EXISTS admin_audit_events;
+DROP TABLE IF EXISTS admin_role_bindings;
+DROP TABLE IF EXISTS knowledge_entries;
+DROP TABLE IF EXISTS content_versions;
+DROP TABLE IF EXISTS data_subject_requests;
+DROP TABLE IF EXISTS visitor_consents;
+DROP TABLE IF EXISTS visit_session_events;
+DROP TABLE IF EXISTS visit_sessions;
+DROP TABLE IF EXISTS route_plan_snapshots;
+DROP TABLE IF EXISTS itinerary_stops;
+DROP TABLE IF EXISTS itineraries;
+DROP INDEX IF EXISTS scenic_published_snapshots_one_active_idx;
+DROP TABLE IF EXISTS scenic_published_snapshots;
+DROP INDEX IF EXISTS closure_events_active_idx;
+DROP TABLE IF EXISTS closure_events;
+DROP TABLE IF EXISTS route_edge_operational_states;
+DROP TABLE IF EXISTS route_operational_versions;
+DROP INDEX IF EXISTS route_edges_geometry_gix;
+DROP TABLE IF EXISTS route_edges;
+DROP INDEX IF EXISTS route_nodes_geometry_gix;
+DROP TABLE IF EXISTS route_nodes;
+DROP TABLE IF EXISTS route_network_revisions;
+DROP INDEX IF EXISTS published_risk_zones_geometry_gix;
+DROP TABLE IF EXISTS published_risk_zones;
+DROP TABLE IF EXISTS published_facilities;
+DROP TABLE IF EXISTS published_poi_aliases;
+DROP INDEX IF EXISTS published_pois_geometry_gix;
+DROP TABLE IF EXISTS published_pois;
+DROP TABLE IF EXISTS published_opening_rules;
+DROP INDEX IF EXISTS published_entrances_geometry_gix;
+DROP TABLE IF EXISTS published_entrances;
+DROP INDEX IF EXISTS published_boundaries_geometry_gix;
+DROP TABLE IF EXISTS published_boundaries;
+DROP TABLE IF EXISTS scenic_area_publications;
+DROP TABLE IF EXISTS data_sources;

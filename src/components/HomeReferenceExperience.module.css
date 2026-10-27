@@ -1,0 +1,1033 @@
+/* ==============================================================================
+   六祖云游 · 首页“地图即首屏”与禅意概念地图样式系统 (Zen Concept Map Styling)
+   融合 liuzu-map-concept-demo.html 色彩与几何体系
+   ============================================================================== */
+
+.shell {
+  --concept-pine: #174a3a;
+  --concept-pine-dark: #0e3328;
+  --concept-paper: #f8f5eb;
+  --concept-paper-strong: #fffdf9;
+  --concept-ink: #18342b;
+  --concept-muted: #66766f;
+  --concept-lychee: #c9484b;
+  --concept-gold: #d8a746;
+  --concept-river: #2f74a8;
+  --concept-line: rgba(23, 74, 58, 0.14);
+  --concept-shadow: 0 16px 42px rgba(14, 51, 40, 0.16);
+  --concept-shadow-sm: 0 4px 14px rgba(14, 51, 40, 0.08);
+
+  min-height: 100dvh;
+  color: var(--concept-ink);
+  background: #dfe7df;
+  font-family: var(--font-wenkai), -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  isolation: isolate;
+  position: relative;
+}
+
+.brandCopy strong {
+  font-family: var(--font-qingke), var(--font-wenkai), serif;
+}
+
+@keyframes culture-route-draw {
+  from {
+    stroke-dashoffset: 240;
+    opacity: 0.15;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0.85;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cultureRouteDraw path {
+    animation: culture-route-draw 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+}
+
+/* 1. 精简导航栏 */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 4.25rem;
+  padding-inline: clamp(1rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--concept-line);
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 2px 10px rgba(14, 51, 40, 0.04);
+  transition: all 240ms ease;
+}
+
+.header[data-scrolled="true"] {
+  background: rgba(248, 245, 235, 0.98);
+  box-shadow: 0 4px 20px rgba(14, 51, 40, 0.08);
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.brandLockup {
+  width: auto;
+  height: 2.35rem;
+  object-fit: contain;
+}
+
+.primaryNav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 2.75rem);
+}
+
+.primaryNav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 0.25rem;
+  color: #435950;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.primaryNav a:hover,
+.primaryNav a.navActive {
+  color: var(--concept-pine);
+}
+
+.primaryNav a.navActive::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2.5px;
+  border-radius: 999px;
+  background: var(--concept-pine);
+  content: "";
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.headerAction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 2.25rem;
+  padding-inline: 0.9rem;
+  border: 1px solid var(--concept-line);
+  border-radius: 999px;
+  color: var(--concept-pine);
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 150ms ease;
+}
+
+.headerAction:hover {
+  border-color: var(--concept-pine);
+  background: #ffffff;
+  box-shadow: var(--concept-shadow-sm);
+  transform: translateY(-1px);
+}
+
+/* ==============================================================================
+   2. 地图主舞台 Hero (Map-First Stage with Concept Demo Styling)
+   ============================================================================== */
+.heroMapStage {
+  position: relative;
+  width: 100%;
+  height: calc(100svh - 4.25rem);
+  min-height: 560px;
+  max-height: 940px;
+  overflow: hidden;
+  background: #dfe7df;
+}
+
+.heroWash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+  z-index: 2;
+}
+
+.mapCanvasWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* 顶部悬浮指令条 (Floating Topbar) */
+.topbar {
+  position: absolute;
+  top: max(14px, env(safe-area-inset-top));
+  left: 14px;
+  right: 14px;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.brandBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 9px;
+  border-radius: 18px;
+  pointer-events: auto;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+}
+
+.brandMark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--concept-pine);
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.brandCopy strong {
+  display: block;
+  font-size: 14px;
+  color: var(--concept-ink);
+}
+
+.brandCopy small {
+  display: block;
+  margin-top: 1px;
+  color: var(--concept-muted);
+  font-size: 11px;
+}
+
+.searchShell {
+  position: relative;
+  z-index: 35;
+  flex: 1;
+  max-width: 520px;
+  pointer-events: auto;
+}
+
+.searchBar {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 18px;
+  padding: 0 16px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  transition: all 180ms ease;
+}
+
+.searchBar:focus-within {
+  border-color: var(--concept-gold);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(216, 167, 70, 0.2), var(--concept-shadow);
+}
+
+.searchBar input {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--concept-ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.searchBar input::placeholder {
+  color: var(--concept-muted);
+}
+
+.searchBar kbd {
+  margin-left: auto;
+  border: 1px solid var(--concept-line);
+  border-radius: 8px;
+  padding: 2px 7px;
+  color: var(--concept-muted);
+  background: white;
+  font-size: 11px;
+  font-family: inherit;
+}
+
+.roundButton {
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  color: var(--concept-pine);
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  transition: all 160ms ease;
+}
+
+.roundButton:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* 搜索联想下拉面板 */
+.searchPanel {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  padding: 9px;
+  border-radius: 18px;
+  background: var(--concept-paper);
+  border: 1px solid var(--concept-line);
+  box-shadow: var(--concept-shadow);
+}
+
+.searchResults {
+  display: grid;
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 50px;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 13px;
+  text-align: left;
+  background: rgba(23, 74, 58, 0.06);
+  cursor: pointer;
+  color: var(--concept-ink);
+  width: 100%;
+  transition: background 120ms ease;
+}
+
+.searchResultItem:hover {
+  background: rgba(23, 74, 58, 0.12);
+}
+
+.resultShape {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.resultShape.person {
+  border-radius: 50%;
+  background: var(--concept-pine);
+}
+
+.resultShape.resource {
+  border-radius: 8px;
+  background: var(--concept-lychee);
+}
+
+.resultShape.place {
+  border-radius: 8px;
+  background: var(--concept-gold);
+  transform: rotate(45deg);
+}
+
+.resultShape.place span {
+  transform: rotate(-45deg);
+}
+
+/* 分类筛选胶囊条 (Filter Bar) */
+.filterBar {
+  position: absolute;
+  top: calc(max(14px, env(safe-area-inset-top)) + 64px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.chip {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--concept-muted);
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 150ms ease;
+}
+
+.chip:hover {
+  color: var(--concept-ink);
+  background: rgba(23, 74, 58, 0.05);
+}
+
+.chip.active {
+  color: white;
+  background: var(--concept-pine);
+}
+
+.chipShape {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: currentColor;
+}
+
+.chip.people .chipShape {
+  border-radius: 50%;
+}
+
+.chip.resource .chipShape {
+  border-radius: 2px;
+}
+
+/* 左下角图例 (Legend) */
+.legend {
+  position: absolute;
+  left: 14px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 25;
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 12px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  color: var(--concept-ink);
+}
+
+.legendShape {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+}
+
+.legendShape.person {
+  border-radius: 50%;
+  background: var(--concept-pine);
+}
+
+.legendShape.resource {
+  border-radius: 3px;
+  background: var(--concept-lychee);
+}
+
+.legendShape.place {
+  transform: rotate(45deg);
+  border-radius: 3px;
+  background: var(--concept-gold);
+}
+
+/* 浮动点位卡片 (Detail & Action Panel) */
+.detailPanel {
+  position: absolute;
+  right: 14px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  z-index: 35;
+  width: min(390px, calc(100vw - 28px));
+  border-radius: 24px;
+  padding: 18px;
+  background: rgba(248, 245, 235, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.eyebrow {
+  color: var(--concept-lychee);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.detailPanel h2 {
+  margin: 6px 60px 5px 0;
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--concept-ink);
+}
+
+.detailBody {
+  color: var(--concept-muted);
+  line-height: 1.55;
+  font-size: 13.5px;
+  margin-top: 6px;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+}
+
+.saveBtn {
+  position: absolute;
+  right: 54px;
+  top: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 12px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  transition: all 150ms ease;
+}
+
+.saveBtn.active {
+  color: #ffffff;
+  background: var(--concept-gold);
+}
+
+.metaTags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.tag {
+  padding: 5px 8px;
+  border-radius: 8px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.btnPrimary,
+.btnSecondary {
+  min-height: 44px;
+  border-radius: 13px;
+  font-weight: 750;
+  font-size: 13.5px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 140ms ease;
+}
+
+.btnPrimary {
+  border: 0;
+  background: var(--concept-pine);
+  color: white;
+}
+
+.btnPrimary:hover {
+  background: var(--concept-pine-dark);
+}
+
+.btnSecondary {
+  border: 1px solid var(--concept-line);
+  background: white;
+  color: var(--concept-pine);
+}
+
+.btnSecondary:hover {
+  background: rgba(248, 245, 235, 0.8);
+}
+
+/* 附近精选按钮与面板 */
+.nearbyBtn {
+  position: absolute;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 25;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 14px;
+  color: white;
+  background: var(--concept-pine);
+  box-shadow: var(--concept-shadow);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: auto;
+}
+
+.nearbyPanel {
+  position: absolute;
+  left: 50%;
+  bottom: calc(72px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 35;
+  width: min(520px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(248, 245, 235, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.nearbyHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px 4px 10px;
+}
+
+.nearbyHead strong {
+  font-size: 15px;
+  color: var(--concept-ink);
+}
+
+.nearbyList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.nearbyItem {
+  min-height: 64px;
+  padding: 8px;
+  border: 1px solid var(--concept-line);
+  border-radius: 12px;
+  background: white;
+  color: var(--concept-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.nearbyItem:hover {
+  border-color: var(--concept-pine);
+  transform: translateY(-1px);
+}
+
+.nearbyItem strong {
+  display: block;
+  font-size: 13px;
+}
+
+.nearbyItem small {
+  display: block;
+  margin-top: 3px;
+  color: var(--concept-muted);
+  font-size: 11px;
+}
+
+/* 路线预览条 */
+.routeCard {
+  position: absolute;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 35;
+  width: min(500px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(248, 245, 235, 0.96);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.routeHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.routeStep {
+  width: 32px;
+  height: 32px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  color: white;
+  background: var(--concept-pine);
+  font-weight: 800;
+}
+
+.routeCopy {
+  flex: 1;
+  min-width: 0;
+}
+
+.routeCopy strong {
+  display: block;
+  font-size: 14px;
+  color: var(--concept-ink);
+}
+
+.routeCopy small {
+  display: block;
+  margin-top: 3px;
+  color: var(--concept-muted);
+  font-size: 12px;
+}
+
+.routeControls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* 定位状态浮动条 */
+.locationPill {
+  position: absolute;
+  top: 80px;
+  right: 14px;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 11px;
+  border-radius: 12px;
+  color: var(--concept-pine);
+  background: rgba(248, 245, 235, 0.95);
+  box-shadow: var(--concept-shadow-sm);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.locationPill i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--concept-river);
+  box-shadow: 0 0 0 4px rgba(47, 116, 168, 0.2);
+}
+
+/* ==============================================================================
+   3. 地图下方文化与路线内容区 (Retained Cultural Content)
+   ============================================================================== */
+.contentFlow {
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 3.5vw, 3rem);
+  background: var(--concept-paper);
+}
+
+.sectionHeader {
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 2.5rem;
+}
+
+.sectionEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 750;
+  color: var(--concept-pine);
+  background: rgba(23, 74, 58, 0.08);
+}
+
+.sectionTitle {
+  margin: 0.75rem 0 0.5rem;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  font-weight: 800;
+  color: var(--concept-ink);
+}
+
+.sectionSubtitle {
+  color: var(--concept-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* 五大核心能力卡片 */
+.capabilitiesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+.capabilityCard {
+  padding: 1.5rem;
+  border-radius: 1.25rem;
+  background: white;
+  border: 1px solid var(--concept-line);
+  box-shadow: var(--concept-shadow-sm);
+  transition: all 200ms ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.capabilityCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--concept-shadow);
+  border-color: var(--concept-pine);
+}
+
+.capIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+}
+
+.capTitle {
+  font-size: 1.1rem;
+  font-weight: 750;
+  color: var(--concept-ink);
+}
+
+.capSubtitle {
+  font-size: 0.82rem;
+  color: var(--concept-gold);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.capDesc {
+  color: var(--concept-muted);
+  font-size: 0.85rem;
+  line-height: 1.55;
+  margin: 0.75rem 0 1rem;
+  flex: 1;
+}
+
+.capAction {
+  border: 0;
+  background: transparent;
+  color: var(--concept-pine);
+  font-weight: 750;
+  font-size: 0.88rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+}
+
+/* 推荐文化路线 */
+.recommendedPathSection {
+  max-width: 1200px;
+  margin: 0 auto 4rem;
+}
+
+.pathStopsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: repeat(5, minmax(4.65rem, auto));
+  grid-template-rows: auto auto auto;
+  gap: 1rem;
+}
+
+.routeFooter {
+  padding-top: 1rem;
+}
+
+.stopImage {
+  height: 4.2rem;
+}
+
+.pathStopCard {
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: white;
+  border: 1px solid var(--concept-line);
+  box-shadow: var(--concept-shadow-sm);
+  cursor: pointer;
+  transition: all 180ms ease;
+}
+
+.pathStopCard:hover {
+  transform: translateY(-3px);
+  border-color: var(--concept-gold);
+}
+
+.stopImgWrap {
+  position: relative;
+  width: 100%;
+  height: 130px;
+}
+
+.stopBody {
+  padding: 1rem;
+}
+
+.stopName {
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--concept-ink);
+}
+
+.stopNote {
+  color: var(--concept-muted);
+  font-size: 0.82rem;
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* 底部宣传轮播与偏好 */
+.carouselWrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 移动端响应式适配 */
+@media (max-width: 768px) {
+  .header {
+    height: 3.75rem;
+    padding-inline: 1rem;
+  }
+  .primaryNav {
+    display: none;
+  }
+  .topbar {
+    left: 10px;
+    right: 10px;
+    top: 10px;
+  }
+  .brandCopy {
+    display: none;
+  }
+  .searchBar {
+    height: 46px;
+    padding: 0 12px;
+  }
+  .roundButton {
+    width: 46px;
+    height: 46px;
+  }
+  .filterBar {
+    left: 10px;
+    right: 10px;
+    transform: none;
+    overflow-x: auto;
+    justify-content: flex-start;
+    top: 66px;
+  }
+  .filterBar::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    white-space: nowrap;
+  }
+  .legend {
+    display: none;
+  }
+  .detailPanel {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    border-radius: 22px;
+    padding: 14px;
+  }
+  .nearbyPanel {
+    left: 8px;
+    right: 8px;
+    bottom: 64px;
+    width: auto;
+    transform: none;
+  }
+  .nearbyList {
+    grid-template-columns: 1fr;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  .locationPill {
+    top: 114px;
+    right: 10px;
+  }
+  .routeCard {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+    transform: none;
+  }
+}

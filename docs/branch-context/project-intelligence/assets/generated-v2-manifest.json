@@ -1,0 +1,118 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-08-15T22:50:00+08:00",
+  "generator": "OpenAI ImageGen",
+  "promptRecord": "generated-v2-prompts.md",
+  "disclosure": "AI-generated concept art. Not real photography, GIS data, surveyed architecture, or evidence of current site conditions.",
+  "assets": [
+    {
+      "path": "../../source-code/web/public/assets/map-skins/v4/green-water-atlas-v1.webp",
+      "kind": "MAP_ART_OVERLAY",
+      "width": 1600,
+      "height": 900,
+      "bytes": 416254,
+      "sha256": "641E6609073843496766DE229FE8E2D2D2CA774BBFC95EE44282EAEFEF7193AD"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-skins/v4/zen-ink-atlas-v1.webp",
+      "kind": "MAP_ART_OVERLAY",
+      "width": 1600,
+      "height": 900,
+      "bytes": 197646,
+      "sha256": "17DE4812EBEE174C8FE0D65367E542C25722B7058AB5E60A2C514989F80E1F2A"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-skins/v4/retro-indigo-atlas-v1.webp",
+      "kind": "MAP_ART_OVERLAY",
+      "width": 1600,
+      "height": 900,
+      "bytes": 352428,
+      "sha256": "60D6673E51A96D7DE6213680DA24D7D15803BC41F0DF322FC6BC560CC340B26A"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-skins/v4/three-d-isometric-atlas-v1.webp",
+      "kind": "MAP_ART_OVERLAY",
+      "width": 1600,
+      "height": 900,
+      "bytes": 519280,
+      "sha256": "20BE6E1706E2E661ACEAD9978BD2D29E021E9760B33A60A51EF5D4691E0D3D28"
+    },
+    {
+      "path": "../../source-code/web/public/assets/promotions/v2/guoen-chan-culture-poster.webp",
+      "kind": "PROMOTION_POSTER",
+      "width": 1600,
+      "height": 900,
+      "bytes": 233842,
+      "sha256": "1088F78126F228CF1820D4248D10DB885D282E67C027F282A99CB0C6634DA446"
+    },
+    {
+      "path": "../../source-code/web/public/assets/promotions/v2/lingnan-lychee-journey-poster.webp",
+      "kind": "PROMOTION_POSTER",
+      "width": 1600,
+      "height": 900,
+      "bytes": 438506,
+      "sha256": "43901BCC61FCC3742F036DC18EA588F4ABC1E8C11B466E2E99400E29914CF157"
+    },
+    {
+      "path": "../../source-code/web/public/assets/promotions/v2/cloud-tour-companion-poster.webp",
+      "kind": "PROMOTION_POSTER",
+      "width": 1600,
+      "height": 900,
+      "bytes": 403608,
+      "sha256": "4D6F7549B8D29CC9F46079BFBDE354B6C15272D41CC99F91198EDE428E982AAA"
+    },
+    {
+      "path": "../../source-code/web/public/assets/promotions/v2/night-chan-lantern-poster.webp",
+      "kind": "PROMOTION_POSTER",
+      "width": 1600,
+      "height": 900,
+      "bytes": 243550,
+      "sha256": "29C470A5701A836E86A07E6415791598F4BA7FB1677CADAE944CF0CB9889AB1D"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-markers/v1/guoen-temple.webp",
+      "kind": "CONCEPT_POI_MARKER",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 36814,
+      "sha256": "F9392B0E191680C3F9004F2FB191101C3D54D1CE56C1566C3F75EB6DBBE0452C"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-markers/v1/huineng-residence.webp",
+      "kind": "CONCEPT_POI_MARKER",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 41986,
+      "sha256": "4176B8AC290D3E8EF1BC9ED7FF7644E1E6FEEDF7EC481C160869E5CB7A9322F1"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-markers/v1/longshan-hot-spring.webp",
+      "kind": "CONCEPT_POI_MARKER",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 50080,
+      "sha256": "0ABA2E44020D9628464AD99CBC52781E080304C77234E948FE8589434C24EAD9"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-markers/v1/zangfo-valley.webp",
+      "kind": "CONCEPT_POI_MARKER",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 60240,
+      "sha256": "460115F6D322D6F9AD973AE26897158C03892770194A163C181DFF8881CFA16F"
+    },
+    {
+      "path": "../../source-code/web/public/assets/map-markers/v1/liuzu-town.webp",
+      "kind": "CONCEPT_POI_MARKER",
+      "width": 320,
+      "height": 320,
+      "alpha": true,
+      "bytes": 46460,
+      "sha256": "CEE9B78628D0D13A464657CBAE2F3EAD98134BBDFD796EDC952FF6E876CC6C22"
+    }
+  ]
+}

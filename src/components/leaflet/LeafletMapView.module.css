@@ -1,0 +1,605 @@
+/* ── 六祖云游 Leaflet 地图全套视觉系统 ── */
+
+/* 1. 地图容器 */
+.mapContainer {
+  --concept-pine: #174a3a;
+  --concept-pine-dark: #0e3328;
+  --concept-paper: #f8f5eb;
+  --concept-ink: #18342b;
+  --concept-muted: #66766f;
+  --concept-lychee: #c9484b;
+  --concept-gold: #d8a746;
+  --concept-river: #2f74a8;
+  --concept-line: rgba(23, 74, 58, 0.14);
+  --concept-shadow: 0 16px 42px rgba(14, 51, 40, 0.18);
+  --concept-radius-lg: 24px;
+  --concept-radius-md: 16px;
+  --concept-radius-sm: 12px;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 540px;
+  background: #dfe7df;
+  overflow: hidden;
+  font-family: var(--font-wenkai), -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+  user-select: none;
+}
+
+.mapViewport {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: #dfe7df;
+}
+
+/* 2. 顶部悬浮指令条 (Topbar) */
+.topbar {
+  position: absolute;
+  z-index: 500;
+  top: max(14px, env(safe-area-inset-top));
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px 8px 8px;
+  border-radius: 18px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  pointer-events: auto;
+}
+
+.brandMark {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--concept-pine);
+  font-weight: 800;
+  font-size: 17px;
+  font-family: var(--font-qingke), serif;
+}
+
+.brandCopy strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--concept-ink);
+  line-height: 1.2;
+}
+
+.brandCopy small {
+  display: block;
+  margin-top: 1px;
+  color: var(--concept-muted);
+  font-size: 11px;
+}
+
+/* 搜索框容器 */
+.searchShell {
+  position: relative;
+  z-index: 501;
+  isolation: isolate;
+  flex: 1;
+  max-width: 540px;
+  pointer-events: auto;
+}
+
+.searchBar {
+  width: 100%;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 18px;
+  padding: 0 16px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+}
+
+.searchIcon {
+  color: var(--concept-pine);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.searchInput {
+  min-width: 0;
+  flex: 1;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--concept-ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.searchInput::placeholder {
+  color: var(--concept-muted);
+}
+
+.searchKbd {
+  margin-left: auto;
+  border: 1px solid var(--concept-line);
+  border-radius: 8px;
+  padding: 2px 7px;
+  color: var(--concept-muted);
+  background: white;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 圆形控制按钮 */
+.roundBtn {
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 18px;
+  cursor: pointer;
+  color: var(--concept-pine);
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  pointer-events: auto;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.roundBtn:hover {
+  transform: scale(1.05);
+}
+
+.roundBtn:active {
+  transform: scale(0.95);
+}
+
+/* 3. 分类胶囊栏 (Filter Bar) */
+.filterBar {
+  position: absolute;
+  z-index: 450;
+  top: calc(max(14px, env(safe-area-inset-top)) + 64px);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 16px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+}
+
+.filterChip {
+  min-height: 36px;
+  padding: 0 13px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--concept-muted);
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.18s ease;
+}
+
+.filterChipActive {
+  color: white !important;
+  background: var(--concept-pine) !important;
+}
+
+.chipShape {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background: currentColor;
+}
+
+.chipShapeCircle {
+  border-radius: 50%;
+}
+
+.chipShapeSquare {
+  border-radius: 2px;
+}
+
+.chipShapeDiamond {
+  border-radius: 2px;
+  transform: rotate(45deg);
+}
+
+/* 4. 左下角图例 (Legend) */
+.legend {
+  position: absolute;
+  z-index: 450;
+  left: 14px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  border-radius: 16px;
+  padding: 10px 14px;
+  font-size: 12px;
+  background: rgba(248, 245, 235, 0.94);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: var(--concept-shadow);
+}
+
+.legendRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 5px 0;
+  font-weight: 700;
+  color: var(--concept-ink);
+}
+
+.legendShape {
+  width: 13px;
+  height: 13px;
+}
+
+.legendPerson {
+  border-radius: 50%;
+  background: var(--concept-pine);
+}
+
+.legendResource {
+  border-radius: 3px;
+  background: var(--concept-lychee);
+}
+
+.legendPlace {
+  transform: rotate(45deg);
+  border-radius: 3px;
+  background: var(--concept-gold);
+}
+
+/* 5. 底部附近精选抽屉按钮 */
+.nearbyBtn {
+  position: absolute;
+  z-index: 450;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  min-height: 46px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 15px;
+  color: white;
+  background: var(--concept-pine);
+  box-shadow: var(--concept-shadow);
+  cursor: pointer;
+  font-weight: 800;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.18s ease;
+}
+
+.nearbyBtn:hover {
+  transform: translateX(-50%) translateY(-2px);
+}
+
+/* 6. 浮动详情面板 (Detail Panel) */
+.detailPanel {
+  position: absolute;
+  z-index: 550;
+  right: 14px;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  width: min(390px, calc(100vw - 28px));
+  border-radius: var(--concept-radius-lg);
+  padding: 20px;
+  background: rgba(248, 245, 235, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--concept-shadow);
+  transform: translateY(calc(100% + 40px));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+}
+
+.detailPanelOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.detailEyebrow {
+  color: var(--concept-lychee);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.detailTitle {
+  margin: 7px 50px 6px 0;
+  font-size: 21px;
+  font-weight: 800;
+  color: var(--concept-ink);
+  line-height: 1.3;
+}
+
+.detailDesc {
+  color: var(--concept-muted);
+  line-height: 1.55;
+  font-size: 13.5px;
+  margin: 8px 0;
+}
+
+.detailMeta {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 12px 0;
+}
+
+.detailTag {
+  padding: 4px 8px;
+  border-radius: 8px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.closeBtn {
+  position: absolute;
+  right: 14px;
+  top: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(23, 74, 58, 0.08);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  color: var(--concept-pine);
+  font-size: 16px;
+}
+
+.saveBtn {
+  position: absolute;
+  right: 54px;
+  top: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 10px;
+  background: rgba(23, 74, 58, 0.08);
+  color: var(--concept-pine);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 17px;
+  transition: all 0.15s ease;
+}
+
+.saveBtnActive {
+  color: white !important;
+  background: var(--concept-gold) !important;
+}
+
+.actionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.btnPrimary, .btnSecondary {
+  min-height: 44px;
+  border-radius: 13px;
+  font-weight: 750;
+  cursor: pointer;
+  font-size: 13.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.btnPrimary {
+  border: 0;
+  background: var(--concept-pine);
+  color: white;
+}
+
+.btnSecondary {
+  border: 1px solid var(--concept-line);
+  background: white;
+  color: var(--concept-pine);
+}
+
+/* 7. 路线与导航卡片 (Route Card) */
+.routeCard {
+  position: absolute;
+  z-index: 560;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  width: min(520px, calc(100vw - 28px));
+  transform: translate(-50%, 20px);
+  opacity: 0;
+  pointer-events: none;
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(248, 245, 235, 0.96);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--concept-shadow);
+  transition: all 0.22s ease;
+}
+
+.routeCardOpen {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.routeHead {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.routeStepIcon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  color: white;
+  background: var(--concept-pine);
+  font-weight: 900;
+}
+
+.routeCopy {
+  flex: 1;
+  min-width: 0;
+}
+
+.routeCopy strong {
+  display: block;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--concept-ink);
+}
+
+.routeCopy small {
+  display: block;
+  margin-top: 3px;
+  color: var(--concept-muted);
+  font-size: 12px;
+}
+
+/* 8. 搜索结果面板 (Search Panel) */
+.searchPanel {
+  position: absolute;
+  z-index: 502;
+  top: 60px;
+  left: 0;
+  right: 0;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.18s ease;
+  padding: 8px;
+  border-radius: 18px;
+  background: var(--concept-paper);
+  box-shadow: var(--concept-shadow);
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.searchPanelOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.searchResultItem {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  width: 100%;
+  min-height: 50px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 12px;
+  text-align: left;
+  background: rgba(23, 74, 58, 0.05);
+  cursor: pointer;
+  color: var(--concept-ink);
+  margin-bottom: 6px;
+  transition: background-color 0.15s ease;
+}
+
+.searchResultItem:hover {
+  background: rgba(23, 74, 58, 0.12);
+}
+
+.resultShape {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--concept-pine);
+  font-weight: 800;
+  font-size: 13px;
+}
+
+/* 9. 移动端响应式 */
+@media (max-width: 768px) {
+  .topbar {
+    left: 10px;
+    right: 10px;
+  }
+  .brandCopy {
+    display: none;
+  }
+  .searchBar {
+    height: 48px;
+  }
+  .roundBtn {
+    width: 48px;
+    height: 48px;
+  }
+  .filterBar {
+    left: 10px;
+    right: 10px;
+    transform: none;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+  .filterBar::-webkit-scrollbar {
+    display: none;
+  }
+  .filterChip {
+    white-space: nowrap;
+  }
+  .legend {
+    bottom: auto;
+    top: 132px;
+    left: 10px;
+    padding: 6px 10px;
+  }
+  .legendRow {
+    display: none;
+  }
+  .legend::after {
+    content: "圆形向导 · 方形资源 · 菱形胜境";
+    font-size: 11px;
+    color: var(--concept-ink);
+  }
+  .detailPanel {
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    width: auto;
+  }
+}

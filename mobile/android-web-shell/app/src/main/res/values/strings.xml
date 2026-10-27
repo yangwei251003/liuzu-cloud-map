@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">六祖云游测试版</string>
+    <string name="release_boundary">公开测试候选 · 真实景区内部导航未放行</string>
+</resources>

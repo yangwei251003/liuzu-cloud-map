@@ -1,0 +1,8 @@
+[
+  {
+    "path": "docs/branch-context/project-intelligence/source/data/gis/raw/osm-liuzu-2026-08-14.json",
+    "bytes": 2285280,
+    "sha256": "cd0dea893a633967295d0d296698985c2ffb8cd3cfc39b6e8fc9c10eb491b459",
+    "reason": "raw-OSM-download-with-unneeded-contributor/contact-metadata; sanitized derived runtime data retained under ODbL"
+  }
+]

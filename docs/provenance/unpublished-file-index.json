@@ -1,0 +1,739 @@
+[
+  {
+    "path": ".vercelignore",
+    "bytes": 149,
+    "sha256": "d7627ca9f6470a543155a852c470d8b72a04e87c85184bcd768e9de57c728f66",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 678,
+    "sha256": "63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "CLAUDE.md",
+    "bytes": 11,
+    "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "database/database/README.md",
+    "bytes": 14442,
+    "sha256": "c271c6a904d4825272d9afbb4b39e15ea4e30a5ed90d78f18cfe57ae1df7eaf1",
+    "source_status": "tracked",
+    "duplicate_of": "database/README.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/001_initial.sql",
+    "bytes": 2784,
+    "sha256": "7e31146810de0c1f0f71f57201bd346ea36dd68ebbc054f31c151b24b59c0979",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/001_initial.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/002_visitor_identity.sql",
+    "bytes": 4865,
+    "sha256": "3e38c6fb093171c42575a1c89e8f9e0ebee0dd5f5da632b94521d89306dbd588",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/002_visitor_identity.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/003_p0_control_plane.sql",
+    "bytes": 28277,
+    "sha256": "4af061a7ca974a61e775e8854b60ad6a6c6c8b5ae551df4caaf5da249986d362",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/003_p0_control_plane.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/004_social_ecosystem.sql",
+    "bytes": 19651,
+    "sha256": "5cc1b4b0fdad856e20aa0326bb8199544c165a383e807b7c2fd999dbf5348c3e",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/004_social_ecosystem.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/005_scenic_navigation_intelligence.sql",
+    "bytes": 5287,
+    "sha256": "05c26fc66755c7f9597fdf7e0c48d66d3f10de33b15c044cd7f2136ba98711f0",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/005_scenic_navigation_intelligence.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/006_formal_offline_navigation_packs.sql",
+    "bytes": 6733,
+    "sha256": "88d6bb48b3013eec717fb737b3cebec97a9a645135317f81ca7f9824c3957def",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/006_formal_offline_navigation_packs.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/007_travel_group_live_location.sql",
+    "bytes": 5745,
+    "sha256": "9ba2235ba5855b7adde30d991e2457d1beae0b64d5886cf60df44d793bfa7e01",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/007_travel_group_live_location.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/008_formal_scenic_itineraries.sql",
+    "bytes": 4283,
+    "sha256": "25760256b8e71129b48d27c28009c4fb4e1ae1dd0be825be65258eeaf39fb191",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/008_formal_scenic_itineraries.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/009_formal_place_communities.sql",
+    "bytes": 1308,
+    "sha256": "3b9a0509be1c11b7070158ce72ea694877a1006ae8c26085c02fdb9e67bc7429",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/009_formal_place_communities.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/010_navigation_session_lifecycle.sql",
+    "bytes": 3191,
+    "sha256": "3225ebd83f842b4a4a26b1291c8b3792d6e9dad9da42d77d5540a3220a8410d6",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/010_navigation_session_lifecycle.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/011_gis_draft_review_workflow.sql",
+    "bytes": 7129,
+    "sha256": "0c359f903106937d92f35674d3cebfc1584ddb6ea170ffe9bcba22b7a83c13a1",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/011_gis_draft_review_workflow.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/012_route_closure_control.sql",
+    "bytes": 6311,
+    "sha256": "cb78e1dfcd5026e153f84b764b16259f09904a75455c1e1b9f0b489bbf6b6c7f",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/012_route_closure_control.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/013_route_operational_snapshot_release.sql",
+    "bytes": 9122,
+    "sha256": "d83561e0183f35b826515e8286cb8dd6203fd02409e33a9d427545858da35928",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/013_route_operational_snapshot_release.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/014_gis_formalization_release.sql",
+    "bytes": 8236,
+    "sha256": "9bf172de120007a1adc31eeee6ef4e5f57aed8033f87c1dd3771b0d88cb3a1ca",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/014_gis_formalization_release.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/015_scenic_transport_routing.sql",
+    "bytes": 2083,
+    "sha256": "d4daa164b3a57cb07ec22dccf258481ce04e104e279b8cd7744a251881a02d3a",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/015_scenic_transport_routing.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/migrations/016_route_operational_observations.sql",
+    "bytes": 12060,
+    "sha256": "7ec760e9187acbcc0c186f7dfb4cb33d2ac2c48135bb1f24943b25da5e084d65",
+    "source_status": "tracked",
+    "duplicate_of": "database/migrations/016_route_operational_observations.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/001_initial.sql",
+    "bytes": 264,
+    "sha256": "bf469bb60a9ddd8ce9fbac1f520a0556934bef5424212b24d54cf0b4084741fd",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/001_initial.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/002_visitor_identity.sql",
+    "bytes": 572,
+    "sha256": "2df5fe6afacec776a9b7e2b0690eaebf248babc45a47213e22ae6014add2380a",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/002_visitor_identity.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/003_p0_control_plane.sql",
+    "bytes": 1750,
+    "sha256": "726d7aab825804884b26dece6a446f83ce0e03cf94d877e4f2788888825b4693",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/003_p0_control_plane.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/004_social_ecosystem.sql",
+    "bytes": 1017,
+    "sha256": "addf3b4ae1e7418d6f2d225f62ae61607a7d200f4924f6fe278aa5cc69737051",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/004_social_ecosystem.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/005_scenic_navigation_intelligence.sql",
+    "bytes": 884,
+    "sha256": "0d2f03cae506e0c4d87efb32313399a75064b3110e51cdfe4b7925dffe90e632",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/005_scenic_navigation_intelligence.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/006_formal_offline_navigation_packs.sql",
+    "bytes": 302,
+    "sha256": "6e4f4da14d915bcc7930c91afdf09d8f0d634f09a46a8e852ff10b7d82774d39",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/006_formal_offline_navigation_packs.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/007_travel_group_live_location.sql",
+    "bytes": 542,
+    "sha256": "7161ef07f1ce44a8decae57909a67f229f256734709f2c002f18f4a49a1a1643",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/007_travel_group_live_location.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/008_formal_scenic_itineraries.sql",
+    "bytes": 533,
+    "sha256": "e614919925c327889c1cc51719f69cff2676378b11e59772260fc785e4850988",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/008_formal_scenic_itineraries.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/009_formal_place_communities.sql",
+    "bytes": 321,
+    "sha256": "36d71938e1013577370a78586b30eb7340cce341c459ddc9aaef920b96ac20c0",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/009_formal_place_communities.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/010_navigation_session_lifecycle.sql",
+    "bytes": 804,
+    "sha256": "b8cc26c6e9049e4150805d6798f4dba659fba46ff9111429869d8c1c287846e3",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/010_navigation_session_lifecycle.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/011_gis_draft_review_workflow.sql",
+    "bytes": 445,
+    "sha256": "349f0dcee0c71e5efc9db6a1b73da9c784f7503fff31cd0f983e558df7886377",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/011_gis_draft_review_workflow.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/012_route_closure_control.sql",
+    "bytes": 1099,
+    "sha256": "0913aeb6213c09780ba0f699773b8b630211c7b8674fde9968d978cc8120f47b",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/012_route_closure_control.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/013_route_operational_snapshot_release.sql",
+    "bytes": 1513,
+    "sha256": "185e776667d5bf69306daf3c8fe4ca39af92a4c1586e014ec5c378e7fa64c4bd",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/013_route_operational_snapshot_release.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/014_gis_formalization_release.sql",
+    "bytes": 896,
+    "sha256": "5e1baf2664db15c9bf1126bd138faaaf6eed29f720cd037b9dc353c6651d8c54",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/014_gis_formalization_release.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/015_scenic_transport_routing.sql",
+    "bytes": 370,
+    "sha256": "7c3a2a7a497e5e4c5537b9563214589ea7f2ed429fd0a813069548d04be97f8c",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/015_scenic_transport_routing.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "database/database/rollbacks/016_route_operational_observations.sql",
+    "bytes": 4427,
+    "sha256": "c683e549dd18da8f77d604393de16c42731c7428b61f44be356cef45b8135db3",
+    "source_status": "tracked",
+    "duplicate_of": "database/rollbacks/016_route_operational_observations.sql",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/AI_SAFETY_AND_KNOWLEDGE_POLICY.md",
+    "bytes": 2187,
+    "sha256": "abaac90a9e8c5d6c76767fbad2b22c1c0683d8806e03212bf3395e52ba4e0577",
+    "source_status": "tracked",
+    "duplicate_of": "docs/AI_SAFETY_AND_KNOWLEDGE_POLICY.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/DATA_SOURCE_REGISTER.md",
+    "bytes": 4164,
+    "sha256": "cc3f51c5234e21bbc03e28277764f0c102088fc79ab7b632e145324c326ab89d",
+    "source_status": "tracked",
+    "duplicate_of": "docs/DATA_SOURCE_REGISTER.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/FEATURE_COVERAGE_MATRIX.md",
+    "bytes": 17964,
+    "sha256": "11a94ed64ac9fd3db580756133c708f84b911b22bc609b88b82f985c000c71bc",
+    "source_status": "tracked",
+    "duplicate_of": "docs/FEATURE_COVERAGE_MATRIX.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/FIELD_TEST_CHECKLIST.md",
+    "bytes": 3740,
+    "sha256": "376516ec62a7bfdaadfb628809435a4c2c39744d7d727451d8bd09aab2742559",
+    "source_status": "tracked",
+    "duplicate_of": "docs/FIELD_TEST_CHECKLIST.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/GIS_DATA_MODEL.md",
+    "bytes": 7189,
+    "sha256": "7042fc401e140be60bc2709a137184b193a9b1c36669c0768ba201bccb2c042e",
+    "source_status": "tracked",
+    "duplicate_of": "docs/GIS_DATA_MODEL.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/GO_LIVE_CHECKLIST.md",
+    "bytes": 5919,
+    "sha256": "2f73150d95f0e267aeacf6faaf076e038dbbcfc1c6eba169c18d8c2c79e0de49",
+    "source_status": "tracked",
+    "duplicate_of": "docs/GO_LIVE_CHECKLIST.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/KNOWN_LIMITATIONS.md",
+    "bytes": 7582,
+    "sha256": "b7d75754ea771715d7289b11eefb99a056fd71597a70df7c84c97b64237e0f6c",
+    "source_status": "tracked",
+    "duplicate_of": "docs/KNOWN_LIMITATIONS.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/OPERATIONS_RUNBOOK.md",
+    "bytes": 17824,
+    "sha256": "3b0e7fa18a1aa705456838851089c27961c4263adbeea74f5a2bce2a1e51536f",
+    "source_status": "tracked",
+    "duplicate_of": "docs/OPERATIONS_RUNBOOK.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/P0_GAP_AND_IMPLEMENTATION_PLAN.md",
+    "bytes": 5162,
+    "sha256": "9165196c33756de027384197c36cbf2d389a17f371e82f0cef6dc7285d530efb",
+    "source_status": "tracked",
+    "duplicate_of": "docs/P0_GAP_AND_IMPLEMENTATION_PLAN.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/PRIVACY_DATA_MAP.md",
+    "bytes": 2723,
+    "sha256": "bd1d7a4bef90a4c8e0186a76efcb075a01ca9f5ae32190263a5df72905272b63",
+    "source_status": "tracked",
+    "duplicate_of": "docs/PRIVACY_DATA_MAP.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/RELEASE_READINESS_AUDIT.md",
+    "bytes": 15059,
+    "sha256": "d6786429e452c6a7ae5292dd657d7f68301b82a9e96e12b8228266e8fc821753",
+    "source_status": "tracked",
+    "duplicate_of": "docs/RELEASE_READINESS_AUDIT.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/SCENIC_NAVIGATION_SYSTEM.md",
+    "bytes": 36815,
+    "sha256": "d0f16c457f0ad41cabb96ac3c4a581817c07d3633dd3217cac947690f551a806",
+    "source_status": "tracked",
+    "duplicate_of": "docs/SCENIC_NAVIGATION_SYSTEM.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/SOCIAL_ECOSYSTEM_ARCHITECTURE.md",
+    "bytes": 9075,
+    "sha256": "04aa7749a80d2d64eafef38024122fe572e4e5a12dfab9c45f3078269057a805",
+    "source_status": "tracked",
+    "duplicate_of": "docs/SOCIAL_ECOSYSTEM_ARCHITECTURE.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/font-license-status.md",
+    "bytes": 4850,
+    "sha256": "1be52328c9309e86c1b0df682e554ed57dc303d4c593361cb00ccf66241a215e",
+    "source_status": "tracked",
+    "duplicate_of": "docs/font-license-status.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/motion-audit.md",
+    "bytes": 3151,
+    "sha256": "e793995c122365ba602fea3d6a6a9a4955c5c94f6b2933d5b43989439b91f084",
+    "source_status": "tracked",
+    "duplicate_of": "docs/motion-audit.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/motion-map.md",
+    "bytes": 2792,
+    "sha256": "71bc36d1553cb9d21147c6b86246b31559bfd3fb63f82c248ecd38c8d7aaa6f8",
+    "source_status": "tracked",
+    "duplicate_of": "docs/motion-map.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/typography-audit.md",
+    "bytes": 5659,
+    "sha256": "8ca1627e48cef819e2e6ea588cb7e7b1ec7c8d30a7496dcd502370280f1f024a",
+    "source_status": "tracked",
+    "duplicate_of": "docs/typography-audit.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "docs/docs/typography-map.md",
+    "bytes": 3244,
+    "sha256": "2a5acef0f11f2569d9bb23e35758e8b17e9b19d1474cfcf567ae0092488bb640",
+    "source_status": "tracked",
+    "duplicate_of": "docs/typography-map.md",
+    "reason": "exact-redundant-copy"
+  },
+  {
+    "path": "mobile/deliverables/README.md",
+    "bytes": 6872,
+    "sha256": "1b33cc88998c69e7ddebe8785bbc1edb1f601621336730a000966d4894b92015",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-external-nav-a806acd-v0.3.1-debug.apk.sha256.txt",
+    "bytes": 122,
+    "sha256": "1a201fca216a94db4fd661802299ff6348c1b292229b9fb9142645ae5f0b6532",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-external-nav-e133fcd-v0.3.1-debug.apk.sha256.txt",
+    "bytes": 122,
+    "sha256": "1382a0d213bb8c0abb1d509f154b06581a8698753640d348ad96d8d1697ac089",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-font-motion-A8bmM6x-v0.5.0-debug.apk.sha256.txt",
+    "bytes": 120,
+    "sha256": "473d78bb3278c7460e16ac763eec307c29741570497072840a4232356c7e49f7",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-latest-669c1d0-v0.3.0-debug.apk.sha256.txt",
+    "bytes": 115,
+    "sha256": "661b36402d0b393227017100f76a15a457a3191b9e8aa9bed56fe96fd156e9c0",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-latest-6cc71a8-v0.2.0-debug.apk.sha256.txt",
+    "bytes": 115,
+    "sha256": "0fc1985ec44963beba98558cd56324719faa38ad4b81ce4cc4235cba2de4e801",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-motion-live-AcC7BnL-v0.6.0-debug.apk.sha256.txt",
+    "bytes": 120,
+    "sha256": "9ce8d7297495d8fec40405010ad4c84f4e711329ef6fa9af8ab7bf87d5f4e53e",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-lockup-v2.png",
+    "bytes": 607182,
+    "sha256": "81fa77b34e4659d536a051df715358b7cbe2db52159b525f55768309237df1c0",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-source-v2.png",
+    "bytes": 1075470,
+    "sha256": "00e1071ffcc60f39a96f5492a612e01bb7bb292647a3b30a3b40d81ea09aa0cc",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-symbol-v2.png",
+    "bytes": 350766,
+    "sha256": "4e92a9a7f788c4fb862c220c1e0c1900c10b73514ee1e5f3cc862fb192660c03",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/manifest.json",
+    "bytes": 1644,
+    "sha256": "75b30496809448a379da52a2989340516c43e85de64255688eb0998445b07e8e",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/answering.webp",
+    "bytes": 123324,
+    "sha256": "70393177595f52f77a3314093b76fcb208296f72bbd2c2c7bd854364cd1cec86",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/greeting.webp",
+    "bytes": 100126,
+    "sha256": "4070e841f1dc89d9a53090bce52ee585ff281968de47ba5466cece6891638374",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/listening.webp",
+    "bytes": 84092,
+    "sha256": "a23110c99c5d649a64d05594166a43a17babf1ff885c6b097bb72da14e621f42",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/manifest.json",
+    "bytes": 3806,
+    "sha256": "6b3bf9c3849a31e230c1dbbd71e376ab8f42e64164bde3d8686b4e6cd31e8326",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/pointing.webp",
+    "bytes": 84140,
+    "sha256": "983c159bf713c540577bf6b37b74f048f5905eef86d5762703748f521b4f9f69",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/reading.webp",
+    "bytes": 112726,
+    "sha256": "a177bbcfb3c1d5fc519aa700a08e776e700341c51081725a03df06bf1fbcc631",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/resting.webp",
+    "bytes": 123504,
+    "sha256": "f3617f14cce255e4a911eca8c6832f7c2691aa509df00b19cab7ddb82b53ebfd",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/route.webp",
+    "bytes": 88942,
+    "sha256": "9a2b4b5a32a322d2fc1cea166caffa4fc5c3afc14696ecf83e9d3ee017fc16c5",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/success.webp",
+    "bytes": 87780,
+    "sha256": "15193ca9d21b16e3bae5ed5e06981aa168e4e33691eb9f02caa11776c742399b",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/thinking.webp",
+    "bytes": 81208,
+    "sha256": "c83f05b9431e3c5e4d14434c582d235db94697955ce306c9cea9e05dfba90f68",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/walking.webp",
+    "bytes": 139524,
+    "sha256": "24fe709cbcae6c2f74a438d05be382d2a12d022b2afcfb1b890b002943517cb7",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/liuzu-concept-journey-poster.webp",
+    "bytes": 77074,
+    "sha256": "fb2cbbd715bc76f2bbb9531ae67dd97861e1fd20a11c622e1f64ee2cd183360e",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/liuzu-concept-journey.mp4",
+    "bytes": 2474801,
+    "sha256": "07135e4a92adeeec11e609ccae3f2f55ec21435b9555e1e91b80b66e2080dd82",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/manifest.json",
+    "bytes": 1003,
+    "sha256": "21997813da84c9480882826000c792773ff5020e1fc288b98f1426435c69c3e2",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/map-skins/v5/retro-guofeng-ornament-v2.png",
+    "bytes": 1039222,
+    "sha256": "0ea10e84186549cf3c223e98907c82c257e0ce128a9438633caab447a2862914",
+    "source_status": "tracked",
+    "reason": "reference-derived-style-rights-not-evidenced"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-aerial.webp",
+    "bytes": 165966,
+    "sha256": "a230ad34cb1b9db06af779da2b09074f6e087b76e63d9bbcd19ebe9264fc9613",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-hero.webp",
+    "bytes": 424880,
+    "sha256": "72047c4a23574e983d0c5d4e99724e9c87ad7c0998a7420233575aa1ac8a6e0c",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-night.webp",
+    "bytes": 180770,
+    "sha256": "b00bf2f1636e228d222dbfe4afa28a877625d70f8172c827eb18e837fbade75a",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/guoen-temple-documentary.mp4",
+    "bytes": 69053593,
+    "sha256": "ea1f2477254eeefb16e4bca97c1838803408908177d926238b15f09f539aa49e",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/guoen-temple-hero.webp",
+    "bytes": 462574,
+    "sha256": "94da1bcb6229b454cfb2ea3eade6edf38b3de5b844eec7f2b274da127af55fa1",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/huineng-residence-hero.webp",
+    "bytes": 278116,
+    "sha256": "2399032513fe3c0188de17e653aef07e23a4277e2f7462886a469e0b91a75364",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-entry.webp",
+    "bytes": 114800,
+    "sha256": "f256a3cd070e30d5f14ddf7aef8c9893873175bd044ff26a7d050afe7ec78c48",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-hero.webp",
+    "bytes": 420800,
+    "sha256": "e0e813041fbf38753634e07408871e90fc2e31f3187e4da2eb22ef14a858cc7b",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-poster.webp",
+    "bytes": 125288,
+    "sha256": "94db13837f3204378f512b27ed203702ac8ab85363755dcb8335a413eec4f367",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/xinxing-promo-short.mp4",
+    "bytes": 2474801,
+    "sha256": "07135e4a92adeeec11e609ccae3f2f55ec21435b9555e1e91b80b66e2080dd82",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v2/zangfo-pond.webp",
+    "bytes": 688652,
+    "sha256": "b3e0da9ecfa4faddf691b0f4767854ce77966c87bfd2de6022c692397602e1f9",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v2/zangfo-waterwheel.webp",
+    "bytes": 479534,
+    "sha256": "1c0b9c5a96f9ad5c9317ef63e2d4c8469bd6bd048f9c06a53c64a6ba43b11f47",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/fz-qingke-yuesong.woff2",
+    "bytes": 14988,
+    "sha256": "99c376fae9f45fe661871838c86a34aaf075cf4a73b422d918b2e54416fd0d7f",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/fz-songke-xiukai.woff2",
+    "bytes": 17852,
+    "sha256": "dd26e983eca5fe0a4ab1b8450c62f2328700afc7caaeca2d1c214ad0d9332bee",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/fz-xingkai.woff2",
+    "bytes": 21212,
+    "sha256": "3fff6719a9778e1266b7c71ef2ef65866aeff0285855dc75ff751a489eb6bb98",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-beiwei-xiejing.woff2",
+    "bytes": 39432,
+    "sha256": "4778adbc48e701922779a2fd365bad3f45cc4c86b90d745c154860a4337b744f",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-shangwei-shoushu.woff2",
+    "bytes": 110408,
+    "sha256": "414a86f8366f4eeec5cb45a4268699dd7bc027d388eccfe10862eadd02669065",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-zengxiang-chanqu.woff2",
+    "bytes": 78596,
+    "sha256": "e346235694bfc393a14516c11cb05cc22f1b96b3de7aede76bf84258d009cd44",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  }
+]

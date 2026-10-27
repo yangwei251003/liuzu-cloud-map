@@ -1,0 +1,98 @@
+.scene {
+  position: relative;
+  min-height: 25rem;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 2rem;
+  background: var(--scene-ground);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 70%), 0 28px 70px rgb(23 63 53 / 14%);
+}
+
+.sceneCulture {
+  --scene-sky: #dfe8df;
+  --scene-ground: #9eb3a2;
+  --scene-ridge: #315e50;
+  --scene-ridge-soft: #6f8f7d;
+}
+
+.sceneNature {
+  --scene-sky: #e5eadf;
+  --scene-ground: #a8b99c;
+  --scene-ridge: #3f6656;
+  --scene-ridge-soft: #77947c;
+}
+
+.sceneLeisure {
+  --scene-sky: #eadfce;
+  --scene-ground: #baa786;
+  --scene-ridge: #536e5f;
+  --scene-ridge-soft: #81937e;
+}
+
+.sceneImage,
+.sceneVeil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sceneImage {
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sceneVeil {
+  z-index: -1;
+  background: rgb(19 53 44 / 24%);
+}
+
+.sceneDisclosure {
+  align-self: flex-start;
+  max-width: 34rem;
+  margin-top: 1rem;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgb(255 255 255 / 50%);
+  border-radius: 999px;
+  background: rgb(255 250 240 / 88%);
+  color: #3f574d;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.stationEnter {
+  animation: cloudTourStationEnter 240ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes cloudTourStationEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cloudTourFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 767px) {
+  .scene {
+    min-height: 21rem;
+    border-radius: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stationEnter {
+    animation-name: cloudTourFade;
+    transform: none;
+    will-change: auto;
+  }
+}

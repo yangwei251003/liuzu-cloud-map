@@ -1,0 +1,102 @@
+/* 三端 MVP 共享设计 Token 与 UI 样式 */
+
+:root {
+  --portal-pine: #183e35;
+  --portal-pine-dark: #122e28;
+  --portal-pine-light: #24574b;
+  --portal-gold: #c28c38;
+  --portal-gold-light: #f7eedd;
+  --portal-moon: #f4f6f2;
+  --portal-moon-surface: #ffffff;
+  --portal-ink: #1f2a27;
+  --portal-ink-muted: #5e6d68;
+  --portal-line: #e2e8e3;
+  --portal-radius: 12px;
+  --portal-shadow: 0 4px 20px -2px rgba(24, 62, 53, 0.08);
+}
+
+.portal-container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.portal-card {
+  background: var(--portal-moon-surface);
+  border: 1px solid var(--portal-line);
+  border-radius: var(--portal-radius);
+  box-shadow: var(--portal-shadow);
+  transition: all 0.2s ease;
+}
+
+.portal-card:hover {
+  box-shadow: 0 8px 30px -4px rgba(24, 62, 53, 0.12);
+}
+
+.portal-btn-primary {
+  background-color: var(--portal-pine);
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.portal-btn-primary:hover {
+  background-color: var(--portal-pine-light);
+  transform: translateY(-1px);
+}
+
+.portal-btn-secondary {
+  background-color: var(--portal-gold-light);
+  color: var(--portal-gold);
+  border: 1px solid rgba(194, 140, 56, 0.3);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.portal-btn-secondary:hover {
+  background-color: #f1e2c7;
+}
+
+.portal-btn-outline {
+  background-color: transparent;
+  color: var(--portal-pine);
+  border: 1px solid var(--portal-line);
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.15s ease;
+}
+
+.portal-btn-outline:hover {
+  background-color: var(--portal-moon);
+  border-color: var(--portal-pine);
+}
+
+.portal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.625rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-width: 1px;
+}

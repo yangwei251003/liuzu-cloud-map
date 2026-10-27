@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>六祖云游地图概念 Demo</title>
+  <link rel="preconnect" href="https://unpkg.com" />
+  <link rel="preconnect" href="https://tile.openstreetmap.org" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root {
+      --pine: #174a3a;
+      --pine-dark: #0e3328;
+      --paper: #f8f5eb;
+      --ink: #18342b;
+      --muted: #66766f;
+      --lychee: #c9484b;
+      --gold: #d8a746;
+      --river: #2f74a8;
+      --line: rgba(23, 74, 58, .14);
+      --shadow: 0 16px 42px rgba(14, 51, 40, .18);
+    }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; overflow: hidden; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif; color: var(--ink); background: #dfe7df; }
+    button { font: inherit; }
+    #map { position: absolute; inset: 0; background: #dfe7df; }
+    .leaflet-control-attribution { font-size: 10px; }
+
+    .topbar {
+      position: fixed; z-index: 1000; top: max(14px, env(safe-area-inset-top)); left: 14px; right: 14px;
+      display: flex; align-items: center; gap: 10px; pointer-events: none;
+    }
+    .brand, .search, .round-button, .filter-bar, .legend, .detail, .chat, .search-panel, .nearby-panel {
+      background: rgba(248, 245, 235, .94); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,.75); box-shadow: var(--shadow);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; padding: 9px 12px 9px 9px; border-radius: 18px; pointer-events: auto; }
+    .brand-mark { width: 36px; height: 36px; border-radius: 12px; display: grid; place-items: center; color: white; background: var(--pine); font-weight: 800; }
+    .brand strong { display: block; font-size: 14px; }
+    .brand small { display: block; margin-top: 1px; color: var(--muted); font-size: 11px; }
+    .search-shell { position: relative; z-index: 1001; isolation: isolate; flex: 1; max-width: 540px; pointer-events: auto; }
+    .search { width: 100%; height: 54px; display: flex; align-items: center; gap: 10px; border-radius: 18px; padding: 0 16px; }
+    .search input { min-width: 0; flex: 1; border: 0; outline: none; background: transparent; color: var(--ink); font: inherit; }
+    .search input::placeholder { color: var(--muted); }
+    .search kbd { margin-left: auto; border: 1px solid var(--line); border-radius: 8px; padding: 3px 7px; color: var(--muted); background: white; }
+    .round-button { width: 54px; height: 54px; border: 0; border-radius: 18px; cursor: pointer; color: var(--pine); font-size: 22px; pointer-events: auto; }
+
+    .filter-bar {
+      position: fixed; z-index: 500; top: calc(max(14px, env(safe-area-inset-top)) + 66px); left: 50%; transform: translateX(-50%);
+      display: flex; gap: 6px; padding: 6px; border-radius: 16px;
+    }
+    .chip { min-height: 38px; padding: 0 13px; border: 0; border-radius: 12px; background: transparent; color: var(--muted); cursor: pointer; font-weight: 650; }
+    .chip.active { color: white; background: var(--pine); }
+    .chip .shape { display: inline-block; width: 9px; height: 9px; margin-right: 6px; background: currentColor; vertical-align: 1px; }
+    .chip.people .shape { border-radius: 50%; }
+    .chip.resource .shape { border-radius: 2px; }
+
+    .legend { position: fixed; z-index: 500; left: 14px; bottom: calc(18px + env(safe-area-inset-bottom)); border-radius: 16px; padding: 10px 12px; font-size: 12px; }
+    .legend-row { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+    .legend-shape { width: 13px; height: 13px; background: var(--pine); }
+    .legend-shape.person { border-radius: 50%; }
+    .legend-shape.resource { border-radius: 3px; background: var(--lychee); }
+    .legend-shape.place { transform: rotate(45deg); border-radius: 3px; background: var(--gold); }
+
+    .marker { display: grid; place-items: center; color: white; border: 3px solid white; box-shadow: 0 5px 14px rgba(14,51,40,.28); font-size: 13px; font-weight: 800; transition: transform .18s ease; }
+    .marker:hover, .marker.selected { transform: scale(1.12); }
+    .marker.person { width: 42px; height: 42px; border-radius: 50%; background: var(--pine); }
+    .marker.user { width: 30px; height: 30px; border-radius: 50%; background: var(--river); box-shadow: 0 0 0 8px rgba(47,116,168,.17), 0 5px 14px rgba(14,51,40,.26); }
+    .marker.resource { width: 42px; height: 42px; border-radius: 12px; background: var(--lychee); }
+    .marker.place { width: 38px; height: 38px; border-radius: 12px; transform: rotate(45deg); background: var(--gold); }
+    .marker.place span { transform: rotate(-45deg); }
+
+    .detail, .chat {
+      position: fixed; z-index: 600; right: 14px; bottom: calc(18px + env(safe-area-inset-bottom)); width: min(390px, calc(100vw - 28px)); border-radius: 24px; padding: 18px;
+      transform: translateY(calc(100% + 40px)); opacity: 0; pointer-events: none; transition: .22s ease;
+    }
+    .detail.open, .chat.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .eyebrow { color: var(--lychee); font-size: 12px; font-weight: 800; letter-spacing: .08em; }
+    .detail h2, .chat h2 { margin: 7px 36px 5px 0; font-size: 22px; }
+    .detail p, .chat p { color: var(--muted); line-height: 1.55; font-size: 14px; }
+    .close { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border: 0; border-radius: 12px; background: rgba(23,74,58,.08); cursor: pointer; }
+    .save { position: absolute; right: 58px; top: 14px; width: 36px; height: 36px; border: 0; border-radius: 12px; background: rgba(23,74,58,.08); color: var(--pine); cursor: pointer; font-size: 18px; }
+    .save.active { color: #fff; background: var(--gold); }
+    .meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+    .tag { padding: 6px 9px; border-radius: 9px; background: rgba(23,74,58,.08); color: var(--pine); font-size: 12px; font-weight: 700; }
+    .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 14px; }
+    .primary, .secondary { min-height: 48px; border-radius: 14px; font-weight: 750; cursor: pointer; }
+    .primary { border: 0; background: var(--pine); color: white; }
+    .secondary { border: 1px solid var(--line); background: white; color: var(--pine); }
+
+    .messages { height: 230px; overflow: auto; display: flex; flex-direction: column; gap: 10px; padding: 8px 2px 14px; }
+    .bubble { max-width: 83%; padding: 10px 12px; border-radius: 14px; font-size: 14px; line-height: 1.45; }
+    .bubble.npc { align-self: flex-start; background: white; border: 1px solid var(--line); }
+    .bubble.me { align-self: flex-end; color: white; background: var(--pine); }
+    .composer { display: flex; gap: 8px; }
+    .composer input { min-width: 0; flex: 1; height: 48px; border: 1px solid var(--line); border-radius: 14px; padding: 0 13px; font: inherit; outline: none; background: white; }
+    .composer input:focus { border-color: var(--pine); box-shadow: 0 0 0 3px rgba(23,74,58,.12); }
+    .composer button { width: 58px; border: 0; border-radius: 14px; color: white; background: var(--lychee); font-weight: 800; cursor: pointer; }
+    .quick-replies { display: flex; gap: 7px; overflow-x: auto; padding: 0 1px 10px; }
+    .quick-replies::-webkit-scrollbar { display: none; }
+    .quick-reply { flex: 0 0 auto; min-height: 36px; padding: 0 11px; border: 1px solid var(--line); border-radius: 11px; color: var(--pine); background: white; cursor: pointer; font-size: 12px; font-weight: 700; }
+    .typing { display: inline-flex; align-items: center; gap: 4px; min-width: 54px; }
+    .typing i { width: 5px; height: 5px; border-radius: 50%; background: var(--muted); animation: blink 1s infinite alternate; }
+    .typing i:nth-child(2) { animation-delay: .2s; }
+    .typing i:nth-child(3) { animation-delay: .4s; }
+    @keyframes blink { from { opacity: .25; transform: translateY(2px); } to { opacity: 1; transform: translateY(0); } }
+
+    .search-panel { position: absolute; z-index: 1002; top: 62px; left: 0; right: 0; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: .18s ease; padding: 9px; border-radius: 18px; background: var(--paper); backdrop-filter: none; }
+    .search-panel.open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+    .search-results { display: grid; gap: 7px; margin-top: 10px; }
+    .search-result { display: flex; align-items: center; gap: 11px; min-height: 52px; padding: 8px 10px; border: 0; border-radius: 13px; text-align: left; background: rgba(23,74,58,.06); cursor: pointer; color: var(--ink); }
+    .search-result .result-shape { width: 28px; height: 28px; display: grid; place-items: center; color: white; background: var(--pine); font-weight: 800; }
+    .search-result .result-shape.person { border-radius: 50%; }
+    .search-result .result-shape.resource { border-radius: 8px; background: var(--lychee); }
+    .search-result .result-shape.place { border-radius: 8px; background: var(--gold); transform: rotate(45deg); }
+    .search-result .result-shape.place span { transform: rotate(-45deg); }
+    .search-result small { display: block; margin-top: 2px; color: var(--muted); }
+    .empty-result { padding: 16px 8px; color: var(--muted); text-align: center; font-size: 13px; }
+
+    .toast { position: fixed; z-index: 800; left: 50%; bottom: 26px; transform: translate(-50%, 30px); opacity: 0; padding: 10px 14px; border-radius: 12px; color: white; background: var(--pine-dark); transition: .2s; pointer-events: none; }
+    .toast.show { transform: translate(-50%, 0); opacity: 1; }
+    .nearby-button { position: fixed; z-index: 500; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); transform: translateX(-50%); min-height: 46px; padding: 0 16px; border: 0; border-radius: 15px; color: white; background: var(--pine); box-shadow: var(--shadow); cursor: pointer; font-weight: 800; }
+    .nearby-panel { position: fixed; z-index: 610; left: 50%; bottom: calc(76px + env(safe-area-inset-bottom)); width: min(520px, calc(100vw - 28px)); transform: translate(-50%, 16px); opacity: 0; pointer-events: none; padding: 12px; border-radius: 20px; transition: .18s ease; }
+    .nearby-panel.open { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+    .nearby-head { display: flex; align-items: center; justify-content: space-between; padding: 3px 5px 9px; }
+    .nearby-head strong { font-size: 15px; }
+    .nearby-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .nearby-item { min-height: 66px; padding: 9px; border: 1px solid var(--line); border-radius: 13px; background: white; color: var(--ink); text-align: left; cursor: pointer; }
+    .nearby-item strong, .nearby-item small { display: block; }
+    .nearby-item small { margin-top: 4px; color: var(--muted); }
+    .route-badge { position: fixed; z-index: 540; left: 50%; top: 145px; transform: translate(-50%, -8px); opacity: 0; pointer-events: none; padding: 10px 14px; border-radius: 13px; color: white; background: var(--pine-dark); box-shadow: var(--shadow); transition: .18s ease; font-size: 13px; font-weight: 700; }
+    .route-badge.show { transform: translate(-50%, 0); opacity: 1; }
+    .route-card { position: fixed; z-index: 620; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom)); width: min(520px, calc(100vw - 28px)); transform: translate(-50%, 18px); opacity: 0; pointer-events: none; padding: 14px; border-radius: 20px; transition: .2s ease; }
+    .route-card.open { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+    .route-head { display: flex; align-items: flex-start; gap: 10px; }
+    .route-step { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: 11px; color: white; background: var(--pine); font-weight: 900; }
+    .route-copy { flex: 1; min-width: 0; }
+    .route-copy strong, .route-copy small { display: block; }
+    .route-copy small { margin-top: 4px; color: var(--muted); }
+    .route-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+    .location-pill { position: fixed; z-index: 520; top: 82px; right: 14px; display: flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 11px; border-radius: 12px; color: var(--pine); background: rgba(248,245,235,.95); box-shadow: var(--shadow); font-size: 12px; font-weight: 750; opacity: 0; transform: translateY(-6px); pointer-events: none; transition: .18s ease; }
+    .location-pill.show { opacity: 1; transform: translateY(0); }
+    .location-pill i { width: 8px; height: 8px; border-radius: 50%; background: var(--river); box-shadow: 0 0 0 4px rgba(47,116,168,.15); }
+    .message-actions { display: flex; gap: 6px; margin-top: 8px; }
+    .message-action { min-height: 32px; padding: 0 9px; border: 1px solid var(--line); border-radius: 9px; color: var(--pine); background: white; cursor: pointer; font-size: 11px; font-weight: 750; }
+
+    @media (max-width: 700px) {
+      .topbar { right: 12px; left: 12px; }
+      .brand { padding-right: 9px; }
+      .brand-copy { display: none; }
+      .search { height: 50px; padding: 0 12px; }
+      .round-button { width: 50px; height: 50px; }
+      .filter-bar { left: 12px; right: 12px; transform: none; overflow-x: auto; justify-content: flex-start; }
+      .filter-bar::-webkit-scrollbar { display: none; }
+      .chip { white-space: nowrap; }
+      .legend { bottom: auto; top: 126px; left: 12px; padding: 8px 10px; }
+      .legend-row { display: none; }
+      .legend::after { content: "圆形是人 · 方形是资源"; }
+      .detail, .chat { left: 8px; right: 8px; bottom: 8px; width: auto; border-radius: 24px 24px 18px 18px; }
+      .search-panel { top: 124px; left: -50px; right: -54px; }
+      .leaflet-control-zoom { display: none; }
+      .nearby-list { grid-template-columns: 1fr; max-height: 220px; overflow: auto; }
+      .nearby-button { bottom: 18px; }
+      .location-pill { top: 138px; right: 12px; }
+      .route-card { bottom: 8px; }
+    }
+  </style>
+</head>
+<body>
+  <main id="map" aria-label="六祖镇真实底图概念演示"></main>
+
+  <header class="topbar">
+    <div class="brand" aria-label="六祖云游">
+      <div class="brand-mark">六</div>
+      <div class="brand-copy"><strong>六祖云游</strong><small>地图就是主界面</small></div>
+    </div>
+    <div class="search-shell">
+      <label class="search"><strong>⌕</strong><input id="searchInput" aria-label="搜索地点、人物或资源" placeholder="找地点、人物或荔枝资源" autocomplete="off" /><kbd>/</kbd></label>
+      <section class="search-panel" id="searchPanel" aria-label="搜索结果"><div class="search-results" id="searchResults"></div></section>
+    </div>
+    <button class="round-button" id="locateButton" aria-label="定位到我的位置" title="定位到我的位置">◎</button>
+  </header>
+
+  <nav class="filter-bar" aria-label="地图对象筛选">
+    <button class="chip active" data-filter="featured">精选</button>
+    <button class="chip people" data-filter="person"><span class="shape"></span>人物</button>
+    <button class="chip resource" data-filter="resource"><span class="shape"></span>资源</button>
+    <button class="chip" data-filter="place">◆ 地点</button>
+  </nav>
+
+  <aside class="legend" aria-label="地图图例">
+    <div class="legend-row"><i class="legend-shape person"></i>圆形：NPC / 游客</div>
+    <div class="legend-row"><i class="legend-shape resource"></i>方形：可用资源</div>
+    <div class="legend-row"><i class="legend-shape place"></i>菱形：地点</div>
+  </aside>
+
+  <button class="nearby-button" id="nearbyButton">附近精选 · 5</button>
+  <section class="nearby-panel" id="nearbyPanel" aria-label="附近精选对象">
+    <div class="nearby-head"><strong>附近精选</strong><button class="close" id="nearbyClose" aria-label="关闭附近清单">×</button></div>
+    <div class="nearby-list" id="nearbyList"></div>
+  </section>
+  <div class="route-badge" id="routeBadge">路线预览</div>
+  <div class="location-pill" id="locationPill"><i></i><span>模拟定位 · 18 米</span></div>
+  <section class="route-card nearby-panel" id="routeCard" aria-label="路线预览控制">
+    <div class="route-head"><span class="route-step">↑</span><div class="route-copy"><strong id="routeTitle">前往目的地</strong><small id="routeSummary">展示路线 · 非真实导航</small></div></div>
+    <div class="route-controls"><button class="secondary" id="routeRecenter">回到当前位置</button><button class="primary" id="routeCancel">结束预览</button></div>
+  </section>
+
+  <section class="detail" id="detailPanel" aria-live="polite">
+    <button class="close" data-close="detail" aria-label="关闭详情">×</button>
+    <button class="save" id="saveButton" aria-label="收藏当前对象" title="收藏">☆</button>
+    <div class="eyebrow" id="detailType">地图对象</div>
+    <h2 id="detailTitle">对象名称</h2>
+    <p id="detailBody"></p>
+    <div class="meta" id="detailMeta"></div>
+    <div class="actions">
+      <button class="secondary" id="routeButton">查看路线</button>
+      <button class="primary" id="chatButton">开始聊天</button>
+    </div>
+  </section>
+
+  <section class="chat" id="chatPanel" aria-live="polite">
+    <button class="close" data-close="chat" aria-label="关闭聊天">×</button>
+    <div class="eyebrow">地图对话</div>
+    <h2 id="chatTitle">与阿荔聊天</h2>
+    <div class="messages" id="messages">
+      <div class="bubble npc">你好，我可以介绍附近地点，也可以告诉你地图上有哪些可用资源。</div>
+    </div>
+    <div class="quick-replies" id="quickReplies">
+      <button class="quick-reply" type="button">附近哪里可以买荔枝？</button>
+      <button class="quick-reply" type="button">塔脚村有什么？</button>
+      <button class="quick-reply" type="button">我的位置安全吗？</button>
+    </div>
+    <form class="composer" id="composer">
+      <input id="messageInput" aria-label="聊天内容" placeholder="例如：附近哪里可以买荔枝？" autocomplete="off" />
+      <button type="submit">发送</button>
+    </form>
+  </section>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map', { zoomControl: false, attributionControl: true }).setView([22.596, 112.218], 14);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    const objects = [
+      { id: 'npc-a-li', type: 'person', featured: true, action: 'chat', subType: 'NPC', title: '阿荔 · 在地向导', short: '荔', coord: [22.5959,112.2193], body: '提供附近地点与资源线索，不冒充官方或实时信息。', source: '六祖云游概念角色', status: '展示可用', tags: ['可聊天','文化向导','概念角色'] },
+      { id: 'visitor-lin', type: 'person', featured: false, action: 'profile', subType: '游客', title: '林先生 · 同行游客', short: '林', coord: [22.5946,112.2167], body: '已主动开启“愿意交流”。位置经过模糊处理，当前不开放游客间直接聊天。', source: '游客主动公开示例', status: '位置已模糊', tags: ['主动公开','位置模糊','暂不可聊天'] },
+      { id: 'lychee', type: 'resource', action: 'ask', subType: '资源', title: '塔脚村荔枝点', short: '荔', coord: [22.5953901,112.2229861], body: '用于验证“资源上地图”的概念示例。销售主体、营业状态和准确位置仍待核验。', source: '概念提案 · 2026-08-19', status: '待核验', tags: ['概念示例','待核验','荔枝资源'] },
+      { id: 'rest', type: 'resource', action: 'ask', subType: '资源', title: '游客休息点', short: '休', coord: [22.5981,112.2162], body: '展示饮水、休息和卫生间等服务资源的地图表达。', source: '交互占位示例', status: '状态未知', tags: ['服务资源','状态未知'] },
+      { id: 'taji', type: 'place', action: 'community', subType: '地点', title: '塔脚', short: '塔', coord: [22.5953901,112.2229861], body: '来自项目现有 OSM 候选数据的地名点，不代表正式景区 POI。', source: 'OpenStreetMap 候选数据', status: '待现场核验', tags: ['OSM 候选','地名','待核验'] },
+      { id: 'xialu', type: 'place', action: 'community', subType: '地点', title: '夏卢村', short: '夏', coord: [22.59583,112.21144], body: '来自项目现有 OSM 候选数据的村级地名点。', source: 'OpenStreetMap 候选数据', status: '待现场核验', tags: ['OSM 候选','村落'] }
+    ];
+
+    let activeObject = null;
+    let userMarker = null;
+    let routePreview = null;
+    let demoLocated = false;
+    let userLatLng = null;
+    const savedIds = new Set();
+    const markerRecords = [];
+    const iconFor = item => L.divIcon({
+      className: '',
+      html: `<div class="marker ${item.type}" data-id="${item.id}"><span>${item.short}</span></div>`,
+      iconSize: item.type === 'person' ? [42,42] : [42,42],
+      iconAnchor: [21,21]
+    });
+
+    objects.forEach(item => {
+      const marker = L.marker(item.coord, { icon: iconFor(item), keyboard: true, title: item.title }).addTo(map);
+      marker.on('click', () => selectObject(item));
+      markerRecords.push({ item, marker });
+    });
+
+    function selectObject(item) {
+      activeObject = item;
+      document.querySelectorAll('.marker').forEach(el => el.classList.toggle('selected', el.dataset.id === item.id));
+      document.getElementById('detailType').textContent = `${item.subType} · 地图对象`;
+      document.getElementById('detailTitle').textContent = item.title;
+      const distanceText = userLatLng ? ` · 约 ${Math.round(userLatLng.distanceTo(L.latLng(item.coord)) / 10) * 10} 米` : '';
+      document.getElementById('detailBody').textContent = `${item.body}\n${item.source} · ${item.status}${distanceText}`;
+      document.getElementById('detailBody').style.whiteSpace = 'pre-line';
+      document.getElementById('detailMeta').innerHTML = item.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
+      const chatButton = document.getElementById('chatButton');
+      chatButton.style.display = item.action === 'profile' ? 'none' : '';
+      chatButton.textContent = item.action === 'chat' ? '开始聊天' : item.action === 'community' ? '进入社区' : '问阿荔';
+      const saveButton = document.getElementById('saveButton');
+      saveButton.classList.toggle('active', savedIds.has(item.id));
+      saveButton.textContent = savedIds.has(item.id) ? '★' : '☆';
+      document.getElementById('detailPanel').classList.add('open');
+      document.getElementById('chatPanel').classList.remove('open');
+      map.panTo(item.coord, { animate: true });
+    }
+
+    document.querySelectorAll('.chip').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(chip => chip.classList.remove('active'));
+      button.classList.add('active');
+      const filter = button.dataset.filter;
+      markerRecords.forEach(({item, marker}) => {
+        const visible = filter === 'featured' ? item.featured !== false : item.type === filter;
+        if (visible && !map.hasLayer(marker)) marker.addTo(map);
+        if (!visible && map.hasLayer(marker)) marker.removeFrom(map);
+      });
+    }));
+
+    document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', () => {
+      document.getElementById(button.dataset.close + 'Panel').classList.remove('open');
+    }));
+
+    document.getElementById('chatButton').addEventListener('click', () => {
+      if (!activeObject) return;
+      if (activeObject.action === 'community') {
+        toast(`已打开“${activeObject.title}”社区概念入口`);
+        return;
+      }
+      document.getElementById('detailPanel').classList.remove('open');
+      document.getElementById('chatTitle').textContent = activeObject.action === 'chat' ? `与${activeObject.title.split('·')[0].trim()}聊天` : '向阿荔询问';
+      document.getElementById('chatPanel').classList.add('open');
+      if (activeObject.action === 'ask') {
+        addNpcMessage(`你正在查看“${activeObject.title}”。可以问我它是什么、是否已核验，或怎样前往。`);
+      }
+      document.getElementById('messageInput').focus();
+    });
+
+    document.getElementById('saveButton').addEventListener('click', () => {
+      if (!activeObject) return;
+      if (savedIds.has(activeObject.id)) savedIds.delete(activeObject.id); else savedIds.add(activeObject.id);
+      document.getElementById('saveButton').classList.toggle('active', savedIds.has(activeObject.id));
+      document.getElementById('saveButton').textContent = savedIds.has(activeObject.id) ? '★' : '☆';
+      toast(savedIds.has(activeObject.id) ? `已收藏“${activeObject.title}”` : '已取消收藏');
+    });
+
+    markerRecords.forEach(({item, marker}) => {
+      if (item.featured === false && map.hasLayer(marker)) marker.removeFrom(map);
+    });
+
+    const nearbyPanel = document.getElementById('nearbyPanel');
+    const nearbyList = document.getElementById('nearbyList');
+    nearbyList.innerHTML = objects.filter(item => item.featured !== false).slice(0, 5).map(item => `<button class="nearby-item" data-nearby="${item.id}"><strong>${item.title}</strong><small>${item.subType} · ${item.tags[0]}</small></button>`).join('');
+    nearbyList.querySelectorAll('[data-nearby]').forEach(button => button.addEventListener('click', () => {
+      nearbyPanel.classList.remove('open');
+      focusObject(button.dataset.nearby, true);
+    }));
+    document.getElementById('nearbyButton').addEventListener('click', () => nearbyPanel.classList.toggle('open'));
+    document.getElementById('nearbyClose').addEventListener('click', () => nearbyPanel.classList.remove('open'));
+
+    document.getElementById('composer').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = document.getElementById('messageInput');
+      const text = input.value.trim();
+      if (!text) return;
+      const messages = document.getElementById('messages');
+      messages.insertAdjacentHTML('beforeend', `<div class="bubble me"></div>`);
+      messages.lastElementChild.textContent = text;
+      input.value = '';
+      simulateReply(text);
+      messages.scrollTop = messages.scrollHeight;
+    });
+
+    document.querySelectorAll('.quick-reply').forEach(button => button.addEventListener('click', () => {
+      document.getElementById('messageInput').value = button.textContent;
+      document.getElementById('composer').requestSubmit();
+    }));
+
+    function addNpcMessage(text, actions = []) {
+      const messages = document.getElementById('messages');
+      messages.insertAdjacentHTML('beforeend', '<div class="bubble npc"></div>');
+      const bubble = messages.lastElementChild;
+      bubble.textContent = text;
+      if (actions.length) {
+        const actionRow = document.createElement('div');
+        actionRow.className = 'message-actions';
+        actions.forEach(action => {
+          const button = document.createElement('button');
+          button.className = 'message-action';
+          button.type = 'button';
+          button.textContent = action.label;
+          button.addEventListener('click', action.run);
+          actionRow.appendChild(button);
+        });
+        bubble.appendChild(actionRow);
+      }
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function simulateReply(text) {
+      const messages = document.getElementById('messages');
+      const typing = document.createElement('div');
+      typing.className = 'bubble npc typing';
+      typing.innerHTML = '<i></i><i></i><i></i>';
+      messages.appendChild(typing);
+      messages.scrollTop = messages.scrollHeight;
+      setTimeout(() => {
+        typing.remove();
+        const normalized = text.replace(/\s/g, '');
+        if (/荔枝|购买|买/.test(normalized)) {
+          addNpcMessage('地图上有一个“塔脚村荔枝点”概念标记。销售主体、营业状态和准确位置目前仍待管理方核验。', [
+            { label: '地图查看', run: () => { document.getElementById('chatPanel').classList.remove('open'); focusObject('lychee', true); } },
+            { label: '加入行程', run: () => toast('已加入演示行程，可稍后统一安排') }
+          ]);
+          focusObject('lychee', false);
+        } else if (/塔脚/.test(normalized)) {
+          addNpcMessage('塔脚是项目现有 OSM 候选数据中的地名点。当前 Demo 把地点和荔枝资源分开显示，避免把村名直接等同于真实商户。');
+          focusObject('taji', false);
+        } else if (/位置|安全|定位/.test(normalized)) {
+          addNpcMessage(demoLocated ? '你的位置只在当前页面中用于演示，没有上传。真实产品应显示定位精度，并在精度不足时停止自动判断。' : '你还没有开启演示定位。点击右上角定位按钮后，会在地图上显示“我”，同时保留清晰的隐私说明。');
+        } else if (/你好|在吗/.test(normalized)) {
+          addNpcMessage('我在。你可以问附近资源、地点信息，或者点地图上的对象直接发起询问。');
+        } else {
+          addNpcMessage('这是展示用模拟回答。正式版本会优先使用已核验的地图与资源资料，并在回答中显示来源、核验状态和更新时间。');
+        }
+      }, 700);
+    }
+
+    function focusObject(id, openDetail = true) {
+      const record = markerRecords.find(record => record.item.id === id);
+      if (!record) return;
+      if (!map.hasLayer(record.marker)) record.marker.addTo(map);
+      map.panTo(record.item.coord, {animate:true});
+      if (openDetail) setTimeout(() => selectObject(record.item), 450);
+    }
+
+    document.getElementById('locateButton').addEventListener('click', () => {
+      if (demoLocated && userMarker) {
+        map.setView(userMarker.getLatLng(), 16);
+        toast('已回到当前位置');
+        return;
+      }
+      const coord = [22.5967,112.2176];
+      toast('正在获取展示位置…');
+      setTimeout(() => {
+        if (userMarker) userMarker.remove();
+        const icon = L.divIcon({ className: '', html: '<div class="marker user">我</div>', iconSize: [30,30], iconAnchor: [15,15] });
+        userMarker = L.marker(coord, { icon, title: '我的模拟位置' }).addTo(map);
+        userLatLng = L.latLng(coord);
+        map.setView(coord, 16);
+        demoLocated = true;
+        document.getElementById('locationPill').classList.add('show');
+        refreshNearby();
+        toast('定位完成 · 模拟精度约 18 米 · 不上传');
+      }, 650);
+    });
+
+    document.getElementById('routeButton').addEventListener('click', () => {
+      if (!activeObject) return;
+      const start = userMarker ? userMarker.getLatLng() : L.latLng(22.5967,112.2176);
+      const end = L.latLng(activeObject.coord);
+      if (routePreview) routePreview.remove();
+      routePreview = L.polyline([start, [22.5962,112.2195], end], {color:'#174a3a',weight:6,opacity:.9,dashArray:'2 10',lineCap:'round'}).addTo(map);
+      map.fitBounds(routePreview.getBounds(), {padding:[90,90]});
+      document.getElementById('detailPanel').classList.remove('open');
+      const distance = Math.max(120, Math.round(start.distanceTo(end) / 10) * 10);
+      document.getElementById('nearbyButton').style.display = 'none';
+      document.getElementById('routeTitle').textContent = `前往 ${activeObject.title}`;
+      document.getElementById('routeSummary').textContent = `约 ${distance} 米 · 预计 ${Math.max(2, Math.round(distance / 75))} 分钟 · 展示路线`;
+      document.getElementById('routeCard').classList.add('open');
+    });
+    document.getElementById('routeRecenter').addEventListener('click', () => {
+      const target = userMarker ? userMarker.getLatLng() : L.latLng(22.5967,112.2176);
+      map.setView(target, 16);
+    });
+    document.getElementById('routeCancel').addEventListener('click', () => {
+      if (routePreview) routePreview.remove();
+      routePreview = null;
+      document.getElementById('routeCard').classList.remove('open');
+      document.getElementById('nearbyButton').style.display = '';
+      toast('路线预览已结束');
+    });
+    const searchPanel = document.getElementById('searchPanel');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    searchInput.addEventListener('focus', openSearch);
+    window.addEventListener('keydown', event => { if (event.key === '/') { event.preventDefault(); openSearch(); } if (event.key === 'Escape') searchPanel.classList.remove('open'); });
+    searchInput.addEventListener('input', renderSearchResults);
+
+    function openSearch() {
+      searchPanel.classList.add('open');
+      searchInput.focus();
+      renderSearchResults();
+    }
+
+    function renderSearchResults() {
+      const query = searchInput.value.trim().toLowerCase();
+      const matches = objects.filter(item => !query || `${item.title}${item.subType}${item.tags.join('')}`.toLowerCase().includes(query)).slice(0, 5);
+      if (!matches.length) {
+        searchResults.innerHTML = '<div class="empty-result">没有找到。试试“荔枝”或“阿荔”。</div>';
+        return;
+      }
+      searchResults.innerHTML = matches.map(item => `<button class="search-result" data-result="${item.id}"><span class="result-shape ${item.type}"><span>${item.short}</span></span><span><strong>${item.title}</strong><small>${item.subType} · ${item.tags[0]}</small></span></button>`).join('');
+      searchResults.querySelectorAll('[data-result]').forEach(button => button.addEventListener('click', () => {
+        searchPanel.classList.remove('open');
+        searchInput.value = '';
+        focusObject(button.dataset.result, true);
+      }));
+    }
+
+    function refreshNearby() {
+      const visible = objects.filter(item => item.featured !== false);
+      const sorted = userLatLng ? visible.sort((a, b) => userLatLng.distanceTo(L.latLng(a.coord)) - userLatLng.distanceTo(L.latLng(b.coord))) : visible;
+      nearbyList.innerHTML = sorted.slice(0, 5).map(item => {
+        const distance = userLatLng ? `${Math.round(userLatLng.distanceTo(L.latLng(item.coord)) / 10) * 10} 米` : item.tags[0];
+        return `<button class="nearby-item" data-nearby="${item.id}"><strong>${item.title}</strong><small>${item.subType} · ${distance}</small></button>`;
+      }).join('');
+      nearbyList.querySelectorAll('[data-nearby]').forEach(button => button.addEventListener('click', () => {
+        nearbyPanel.classList.remove('open');
+        focusObject(button.dataset.nearby, true);
+      }));
+    }
+
+    map.on('click', () => {
+      searchPanel.classList.remove('open');
+      nearbyPanel.classList.remove('open');
+    });
+
+    let toastTimer;
+    function toast(message) {
+      const el = document.getElementById('toast');
+      el.textContent = message; el.classList.add('show');
+      clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+    }
+  </script>
+</body>
+</html>

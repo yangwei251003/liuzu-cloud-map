@@ -1,0 +1,616 @@
+/*
+ * 六祖云游 Experience V3
+ * Shared visitor and operations surfaces outside the home and detailed map.
+ * The language is grounded in the supplied references: xuan-paper white,
+ * forest green, restrained route gold, rounded paper panels and ink-wash depth.
+ */
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) {
+  --v3-paper: oklch(97.8% 0.014 82);
+  --v3-paper-raised: oklch(99.2% 0.008 82 / 0.94);
+  --v3-paper-soft: oklch(96.1% 0.018 90 / 0.9);
+  --v3-ink: oklch(25% 0.063 166);
+  --v3-pine: oklch(35% 0.095 166);
+  --v3-pine-deep: oklch(27% 0.082 166);
+  --v3-moss: oklch(53% 0.075 154);
+  --v3-route: oklch(72% 0.12 78);
+  --v3-route-deep: oklch(48% 0.1 69);
+  --v3-lychee: oklch(52% 0.16 32);
+  --v3-line: oklch(53% 0.045 99 / 0.2);
+  --v3-shadow: 0 0.7rem 1.8rem oklch(29% 0.055 155 / 0.075);
+  --v3-shadow-hover: 0 0.9rem 2.2rem oklch(29% 0.055 155 / 0.1);
+  --v3-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  background: var(--v3-paper);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"])::before {
+  content: none;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .paper-noise {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* One navigation rail, matching the supplied wide-screen composition. */
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header {
+  height: 4.5rem;
+  border-color: var(--v3-line);
+  background: color-mix(in oklch, var(--v3-paper-raised) 92%, transparent);
+  box-shadow: 0 0.5rem 1.8rem oklch(34% 0.04 150 / 0.055);
+  backdrop-filter: blur(1rem) saturate(120%);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__inner {
+  grid-template-columns: minmax(15rem, 1fr) auto minmax(15rem, 1fr);
+  max-width: 92rem;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__brand {
+  gap: 0.68rem;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__mark {
+  width: 2.85rem;
+  height: 2.85rem;
+  overflow: hidden;
+  border: 0;
+  background: var(--v3-paper-raised);
+  box-shadow: inset 0 0 0 1px var(--v3-line);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__brand strong {
+  color: var(--v3-ink);
+  font-family: var(--font-display);
+  font-size: 1.08rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__brand small {
+  color: color-mix(in oklch, var(--v3-ink) 66%, transparent);
+  font-size: 0.61rem;
+  letter-spacing: 0.16em;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-task-nav__link {
+  min-width: 5.25rem;
+  justify-content: center;
+  padding-inline: 1.15rem;
+  color: color-mix(in oklch, var(--v3-ink) 72%, white);
+  font-size: 0.96rem;
+  font-weight: 650;
+  transition: color 220ms var(--v3-ease), background-color 220ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-task-nav__link::after {
+  right: 1.05rem;
+  bottom: 0.38rem;
+  left: 1.05rem;
+  height: 2px;
+  border-radius: 999px;
+  transform: scaleX(0.25);
+  transition: background-color 220ms var(--v3-ease), transform 340ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"] .desktop-task-nav__link[aria-current="page"] {
+  background: color-mix(in oklch, var(--v3-pine) 7%, transparent);
+}
+
+.app-surface[data-experience="v3"] .desktop-task-nav__link[aria-current="page"]::after {
+  box-shadow: 0 0 0.85rem color-mix(in oklch, var(--v3-route) 52%, transparent);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-task-nav__link:is(:hover, [aria-current="page"])::after {
+  background: var(--v3-pine);
+  transform: scaleX(1);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-site-header__context {
+  display: inline-flex;
+  min-height: 2.55rem;
+  align-items: center;
+  justify-self: end;
+  gap: 0.48rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--v3-line);
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--v3-paper-raised) 74%, transparent);
+  color: var(--v3-pine-deep);
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+}
+
+/* Mobile context rail and task navigation. */
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header {
+  height: 3.75rem;
+  border-color: var(--v3-line);
+  background: color-mix(in oklch, var(--v3-paper-raised) 93%, transparent);
+  box-shadow: 0 0.4rem 1.3rem oklch(32% 0.035 155 / 0.05);
+  backdrop-filter: blur(0.8rem);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header__back,
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header__map {
+  color: var(--v3-pine-deep);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header__map {
+  border: 1px solid var(--v3-line);
+  background: var(--v3-paper-raised);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header__title {
+  color: var(--v3-ink);
+  font-family: var(--font-display);
+  letter-spacing: 0.1em;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .visitor-task-nav {
+  border-color: var(--v3-line);
+  background: color-mix(in oklch, var(--v3-paper-raised) 94%, transparent);
+  box-shadow: 0 -0.8rem 2.4rem oklch(29% 0.04 160 / 0.1);
+  backdrop-filter: blur(1rem) saturate(120%);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .visitor-task-nav__link {
+  color: color-mix(in oklch, var(--v3-ink) 66%, white);
+  transition: color 180ms var(--v3-ease), transform 180ms var(--v3-ease), background-color 180ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .visitor-task-nav__link[aria-current="page"] {
+  background: color-mix(in oklch, var(--v3-pine) 10%, transparent);
+  color: var(--v3-pine-deep);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .visitor-task-nav__link[aria-current="page"] svg {
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* Paper landscape backdrop for every internal journey. */
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell {
+  position: relative;
+  overflow: clip;
+  background: var(--v3-paper);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell::before,
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell::after {
+  content: none;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell__content {
+  position: relative;
+  z-index: 1;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell__content::before {
+  position: absolute;
+  top: clamp(1.5rem, 5vw, 5rem);
+  right: max(1rem, calc((100vw - 88rem) / 2));
+  width: clamp(4.5rem, 9vw, 8.5rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: none center / cover no-repeat;
+  box-shadow: 0 1rem 3rem oklch(36% 0.055 153 / 0.07);
+  content: "";
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+/* Route-specific quiet scene washes use already registered project media. */
+.app-surface[data-app-route="/guide"] .app-page-shell,
+.app-surface[data-app-route="/guide/ask"] .app-page-shell {
+  background-image:
+    linear-gradient(90deg, var(--v3-paper) 0 48%, color-mix(in oklch, var(--v3-paper) 91%, transparent) 72% 100%),
+    url("/assets/media/scenic/licensed/guoen-temple-20260527-1280.jpg");
+  background-position: center, right top;
+  background-repeat: no-repeat;
+  background-size: cover, min(56rem, 68vw) auto;
+}
+
+.app-surface[data-app-route="/cloud-tour"] > main.paper-noise {
+  background-image:
+    linear-gradient(90deg, var(--v3-paper) 0 43%, color-mix(in oklch, var(--v3-paper) 89%, transparent) 76% 100%),
+    url("/assets/media/scenic/licensed/guoen-temple-20260527-1280.jpg") !important;
+  background-position: center, right top !important;
+  background-repeat: no-repeat !important;
+  background-size: cover, min(60rem, 72vw) auto !important;
+}
+
+/* Typography follows the manuscript references without compromising body legibility. */
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(h1, h2, h3, .section-header__title) {
+  color: var(--v3-ink);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(h1, .section-header__title) {
+  font-family: var(--font-display);
+  font-weight: 760 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.12 !important;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header--cultural .section-header__title {
+  font-family: var(--font-qingke) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.12 !important;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header {
+  position: relative;
+  gap: 1.75rem 3rem;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__copy {
+  max-width: 49rem;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__brush {
+  display: none;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__meta {
+  margin-bottom: 0.65rem;
+  color: var(--v3-route-deep);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__title {
+  max-width: 13ch;
+  font-size: clamp(2.65rem, 5vw, 4.7rem);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__description {
+  max-width: 62ch;
+  margin-top: 1.35rem;
+  color: color-mix(in oklch, var(--v3-ink) 68%, white);
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+/* Panels feel like stacked paper sheets instead of generic dashboard cards. */
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]):not([data-app-route="/admin/map-editor"])
+  :is(section, article, aside)[class*="border"][class*="bg-white"],
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]):not([data-app-route="/admin/map-editor"])
+  :is(section, article, aside)[class*="rounded-"][class*="bg-[#fff"] {
+  border-color: var(--v3-line) !important;
+  background: var(--v3-paper-raised) !important;
+  box-shadow: var(--v3-shadow) !important;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"])
+  :is(section, article, aside)[class*="rounded-"] {
+  transition: border-color 260ms var(--v3-ease), box-shadow 360ms var(--v3-ease), transform 360ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"])
+  :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), select, textarea) {
+  border-color: var(--v3-line) !important;
+  background: color-mix(in oklch, var(--v3-paper-raised) 94%, white) !important;
+  box-shadow: inset 0 1px 0 oklch(100% 0 0 / 0.75);
+  transition: border-color 180ms var(--v3-ease), box-shadow 220ms var(--v3-ease), transform 220ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"])
+  :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), select, textarea):focus {
+  border-color: color-mix(in oklch, var(--v3-pine) 62%, white) !important;
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--v3-pine) 12%, transparent);
+  transform: translateY(-1px);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) button,
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) a[class*="inline-flex"] {
+  position: relative;
+  overflow: hidden;
+  transition: color 180ms var(--v3-ease), background-color 180ms var(--v3-ease), border-color 180ms var(--v3-ease), box-shadow 260ms var(--v3-ease), transform 180ms var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) [class*="bg-[#173f35]"],
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) [class*="bg-[#d95a4a]"] {
+  box-shadow: 0 0.65rem 1.5rem color-mix(in oklch, var(--v3-pine) 18%, transparent);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .interface-state {
+  border-color: var(--v3-line);
+  background: color-mix(in oklch, var(--v3-paper-raised) 91%, transparent);
+  box-shadow: 0 0.9rem 2.4rem oklch(30% 0.045 158 / 0.07);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .interface-state__icon {
+  color: var(--v3-pine);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .interface-state__skeleton {
+  background: linear-gradient(90deg, oklch(87% 0.025 90), oklch(94% 0.018 90), oklch(87% 0.025 90));
+  background-size: 220% 100%;
+  animation: v3-shimmer 1.8s linear infinite;
+}
+
+/* Operations surfaces keep their density but inherit the same material system. */
+.app-surface[data-app-route="/admin"] .paper-noise,
+.app-surface[data-app-route="/admin/readiness"] .app-page-shell,
+.app-surface[data-app-route="/admin/map-editor"] > main {
+  background-color: var(--v3-paper) !important;
+  background-image: none !important;
+}
+
+.app-surface[data-app-route="/admin/map-editor"] > main > header {
+  border-color: var(--v3-line) !important;
+  background: color-mix(in oklch, var(--v3-paper-raised) 94%, transparent) !important;
+  box-shadow: 0 0.55rem 1.8rem oklch(31% 0.04 158 / 0.07);
+}
+
+.app-surface[data-app-route="/admin"] > .desktop-site-header,
+.app-surface[data-app-route="/admin/map-editor"] > .desktop-site-header {
+  display: none !important;
+}
+
+/* Page entrance and interaction motion. Each effect signals hierarchy or feedback. */
+@keyframes v3-page-rise {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes v3-shimmer {
+  to { background-position: -220% 0; }
+}
+
+@keyframes v3-section-reveal {
+  from { opacity: 0.42; transform: translateY(1.1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes v3-section-focus {
+  from { opacity: 0.58; transform: scale(0.985); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes v3-section-wipe {
+  from { clip-path: inset(0 7% 0 0); opacity: 0.62; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+
+@keyframes v3-dialog-enter {
+  from { opacity: 0; transform: translateY(0.75rem) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes v3-feedback-confirm {
+  0% { transform: scale(0.92); }
+  65% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+@keyframes v3-cinematic-wash {
+  0% { opacity: 0; transform: translate3d(-5%, 2%, 0) scale(0.96); }
+  100% { opacity: 0.55; transform: translate3d(4%, -2%, 0) scale(1.04); }
+}
+
+@keyframes v3-card-arrive {
+  from { opacity: 0; transform: translateY(1.4rem) scale(0.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes v3-image-hover-breathe {
+  from { transform: scale(1.012); }
+  to { transform: scale(1.042); }
+}
+
+.app-surface[data-motion-tier="cinematic"]::after,
+.app-surface[data-motion-tier="expressive"]::after {
+  position: fixed;
+  z-index: -1;
+  top: 4rem;
+  left: 8%;
+  width: min(48rem, 74vw);
+  height: min(32rem, 54vw);
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklch, var(--v3-route) 10%, transparent), transparent 68%);
+  content: "";
+  pointer-events: none;
+  animation: v3-cinematic-wash 7s var(--v3-ease) infinite alternate;
+}
+
+.app-surface[data-motion-tier="cinematic"] .paper-noise > section :is(article, li)[class*="rounded-"] {
+  animation: v3-card-arrive 620ms var(--v3-ease) both;
+}
+
+.app-surface[data-motion-tier="cinematic"] .paper-noise > section :is(article, li)[class*="rounded-"]:nth-child(2) { animation-delay: 65ms; }
+.app-surface[data-motion-tier="cinematic"] .paper-noise > section :is(article, li)[class*="rounded-"]:nth-child(3) { animation-delay: 130ms; }
+.app-surface[data-motion-tier="cinematic"] .paper-noise > section :is(article, li)[class*="rounded-"]:nth-child(4) { animation-delay: 195ms; }
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell__content > :first-child,
+.app-surface[data-app-route="/admin"] .paper-noise > :first-child,
+.app-surface[data-app-route="/admin/map-editor"] > main > :first-child {
+  animation: v3-page-rise 620ms var(--v3-ease) both;
+}
+
+@supports (animation-timeline: view()) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"])
+    .paper-noise > section:not(:first-of-type) {
+    animation: v3-section-reveal linear both;
+    animation-range: entry 4% cover 24%;
+    animation-timeline: view();
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"])
+    .paper-noise > section:nth-of-type(3n) {
+    animation-name: v3-section-focus;
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"])
+    .paper-noise > section:nth-of-type(3n + 1):not(:first-of-type) {
+    animation-name: v3-section-wipe;
+  }
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(button, a[class*="inline-flex"], a[class*="grid"]) {
+  transition-duration: 180ms;
+  transition-property: background-color, border-color, box-shadow, color, filter, opacity, transform, translate;
+  transition-timing-function: var(--v3-ease);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(button, a[class*="inline-flex"], a[class*="grid"]):active {
+  translate: 0 1px;
+  transform: scale(0.985);
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(article, .interface-state) {
+  transition: box-shadow 220ms var(--v3-ease), transform 220ms var(--v3-ease), border-color 180ms ease;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(.accessible-modal-dialog, .accessibility-dialog)[open] {
+  animation: v3-dialog-enter 240ms var(--v3-ease) both;
+}
+
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is([role="status"], [role="alert"]) > svg:first-child,
+.app-surface[data-experience="v3"]:not([data-app-route="/map"]) button[aria-pressed="true"] > svg:first-child {
+  animation: v3-feedback-confirm 260ms var(--v3-ease);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .desktop-task-nav__link:hover {
+    background: color-mix(in oklch, var(--v3-pine) 6%, transparent);
+    color: var(--v3-pine-deep);
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) button:not(:disabled):hover,
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) a[class*="inline-flex"]:hover {
+    filter: saturate(1.03);
+    transform: translateY(-2px);
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) article:hover {
+    transform: translateY(-0.28rem) scale(1.006);
+    box-shadow: var(--v3-shadow-hover);
+  }
+
+  .app-surface[data-motion-tier="cinematic"] :is(article, a, button):hover img,
+  .app-surface[data-motion-tier="expressive"] :is(article, a, button):hover img,
+  .home-surface [data-promotion-visual]:hover img,
+  .home-surface [data-home-reference-experience] button:hover img[alt] {
+    animation: v3-image-hover-breathe 1.45s var(--v3-ease) infinite alternate;
+    will-change: transform;
+  }
+
+  .app-surface[data-motion-tier="cinematic"] img,
+  .app-surface[data-motion-tier="expressive"] img {
+    transition: transform 720ms var(--v3-ease), filter 420ms ease;
+  }
+}
+
+@media (max-width: 47.999rem), (pointer: coarse) {
+  .app-surface[data-motion-tier]::after { animation: none; opacity: 0.3; }
+  .app-surface[data-motion-tier="cinematic"] .paper-noise > section :is(article, li)[class*="rounded-"] { animation-duration: 360ms; animation-delay: 0ms; }
+}
+
+html[data-simplified-visuals="true"] .app-surface[data-motion-tier]::after,
+html[data-simplified-visuals="true"] [data-chanxiaoli-trigger] > span:nth-child(2),
+html[data-simplified-visuals="true"] [data-chat-typing]::after {
+  display: none;
+  animation: none;
+}
+
+html[data-simplified-visuals="true"] .app-surface[data-motion-tier] :is(article, a, button):hover img {
+  animation: none;
+}
+
+html[data-simplified-visuals="true"] .home-surface :is([data-promotion-visual]:hover img, [data-home-reference-experience] button:hover img[alt]) {
+  animation: none;
+}
+
+@media (min-width: 64rem) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .subpage-header {
+    display: none;
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell__content {
+    min-height: calc(100dvh - 4.5rem);
+  }
+}
+
+@media (max-width: 63.999rem) {
+  .app-surface[data-app-route="/plan"] .app-page-shell,
+  .app-surface[data-app-route="/guide"] .app-page-shell,
+  .app-surface[data-app-route="/guide/ask"] .app-page-shell,
+  .app-surface[data-app-route="/cloud-tour"] .app-page-shell,
+  .app-surface[data-app-route="/journey"] .app-page-shell,
+  .app-surface[data-app-route="/journey/knowledge"] .app-page-shell {
+    background-image: none;
+  }
+
+  .app-surface[data-app-route="/cloud-tour"] > main.paper-noise,
+  .app-surface[data-app-route="/journey"] > main.paper-noise {
+    background-image: none !important;
+  }
+}
+
+@media (max-width: 47.999rem) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__title {
+    max-width: 15ch;
+    font-size: clamp(2.25rem, 12vw, 3.2rem) !important;
+    overflow-wrap: normal;
+  }
+
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .section-header__description {
+    font-size: 0.95rem;
+    line-height: 1.78;
+  }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *,
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *::before,
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    translate: none !important;
+  }
+}
+
+html[data-reduce-motion="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *,
+html[data-reduce-motion="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *::before,
+html[data-reduce-motion="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  translate: none !important;
+}
+
+html[data-high-contrast="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) {
+  --v3-paper: var(--color-canvas);
+  --v3-paper-raised: var(--color-surface);
+  --v3-paper-soft: var(--color-surface-muted);
+  --v3-ink: var(--color-ink);
+  --v3-pine: var(--color-primary);
+  --v3-pine-deep: var(--color-ink);
+  --v3-route-deep: var(--color-route-ink);
+  --v3-line: var(--color-line);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(.desktop-site-header, .subpage-header, .visitor-task-nav),
+  .app-surface[data-experience="v3"]:not([data-app-route="/map"]) :is(section, article, aside)[class*="bg-white"] {
+    background: var(--v3-paper-raised) !important;
+    backdrop-filter: none !important;
+  }
+}
+
+html[data-simplified-visuals="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"])::before,
+html[data-simplified-visuals="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell::before,
+html[data-simplified-visuals="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell::after,
+html[data-simplified-visuals="true"] .app-surface[data-experience="v3"]:not([data-app-route="/map"]) .app-page-shell__content::before {
+  display: none;
+}

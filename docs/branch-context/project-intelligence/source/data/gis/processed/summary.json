@@ -1,0 +1,53 @@
+{
+  "source": "OpenStreetMap contributors via Overpass API",
+  "license": "ODbL 1.0",
+  "retrieved_at": "2026-08-14",
+  "osm_snapshot": "2026-08-14T15:47:35Z",
+  "crs": "EPSG:4326",
+  "bounds": [
+    112.1579313,
+    22.4921781,
+    112.2969046,
+    22.7027508
+  ],
+  "layers": {
+    "pois": {
+      "features": 363,
+      "geometry_types": {
+        "Point": 363
+      },
+      "invalid_geometries": 0
+    },
+    "roads": {
+      "features": 707,
+      "geometry_types": {
+        "LineString": 685,
+        "Polygon": 22
+      },
+      "invalid_geometries": 0
+    },
+    "waterways": {
+      "features": 26,
+      "geometry_types": {
+        "LineString": 25,
+        "Polygon": 1
+      },
+      "invalid_geometries": 0
+    },
+    "buildings": {
+      "features": 712,
+      "geometry_types": {
+        "Polygon": 712
+      },
+      "invalid_geometries": 0
+    },
+    "landmarks": {
+      "features": 621,
+      "geometry_types": {
+        "LineString": 347,
+        "Polygon": 274
+      },
+      "invalid_geometries": 0
+    }
+  }
+}

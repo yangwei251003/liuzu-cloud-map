@@ -1,0 +1,272 @@
+/* ── 六祖云游 Marker Design System 纯净触碰动效与核心景点视觉 ── */
+
+.liuzu-map-marker-container {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 1. 外层通用包装（处理缩放、轻微涟漪、外边环闪烁与高亮，不影响内部角度） */
+.liuzu-marker-anchor {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 轻微触碰/悬浮涟漪光圈 */
+.liuzu-marker-anchor::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(216, 167, 70, 0);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.liuzu-marker-anchor:hover::after,
+.liuzu-marker-anchor.selected::after {
+  opacity: 1;
+  border-color: rgba(216, 167, 70, 0.85);
+  box-shadow: 0 0 12px rgba(216, 167, 70, 0.7);
+  animation: ringShimmer 1.8s infinite ease-in-out;
+}
+
+/* 2. 核心 5 大精选景点 Marker（常显金色光芒，正文字永远端正） */
+.marker-featured-spot {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+}
+
+/* 金色 45° 菱形底座（仅底座旋转，文字与图标完全保持水平！） */
+.marker-featured-base {
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, #f0ca6c 0%, #d8a746 50%, #b88628 100%);
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 4px 16px rgba(14, 51, 40, 0.28);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+
+.liuzu-marker-anchor:hover .marker-featured-base {
+  transform: rotate(45deg) scale(1.08);
+  box-shadow: 0 0 14px rgba(216, 167, 70, 0.8), 0 6px 20px rgba(14, 51, 40, 0.35);
+}
+
+.liuzu-marker-anchor.selected .marker-featured-base {
+  transform: rotate(45deg) scale(1.14);
+  border-color: #fff9e6;
+  box-shadow: 0 0 0 3px rgba(216, 167, 70, 0.9), 0 0 20px rgba(216, 167, 70, 0.85), 0 8px 24px rgba(14, 51, 40, 0.4);
+}
+
+/* 内部内容（绝对水平居中，字形永远端正不倾斜） */
+.marker-featured-body {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.marker-featured-glyph {
+  font-size: 15px;
+  line-height: 1;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.35));
+}
+
+.marker-featured-text {
+  font-size: 11px;
+  font-weight: 900;
+  font-family: var(--font-qingke), serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* 景点下方悬浮地名标牌（水平居中，永远不歪斜） */
+.marker-spot-label {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(24, 52, 43, 0.92);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(216, 167, 70, 0.6);
+  color: #f8f5eb;
+  font-size: 10.5px;
+  font-weight: 750;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Noto Sans SC", sans-serif;
+}
+
+/* 3. 普通点位 Marker */
+/* 菱形地点 */
+.marker-normal-diamond {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+}
+
+.marker-diamond-base {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  transform: rotate(45deg);
+  background: #d8a746;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(14, 51, 40, 0.25);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.liuzu-marker-anchor:hover .marker-diamond-base {
+  transform: rotate(45deg) scale(1.08);
+  box-shadow: 0 0 12px rgba(216, 167, 70, 0.7);
+}
+
+.liuzu-marker-anchor.selected .marker-diamond-base {
+  transform: rotate(45deg) scale(1.14);
+  box-shadow: 0 0 0 3px rgba(216, 167, 70, 0.85), 0 0 16px rgba(216, 167, 70, 0.75);
+}
+
+.marker-upright-text {
+  position: relative;
+  z-index: 2;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: var(--font-qingke), serif;
+}
+
+/* 圆形 (NPC/向导) */
+.marker-normal-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #174a3a;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(23, 74, 58, 0.35);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: var(--font-qingke), serif;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.liuzu-marker-anchor:hover .marker-normal-circle {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(23, 74, 58, 0.6);
+}
+
+.liuzu-marker-anchor.selected .marker-normal-circle {
+  transform: scale(1.14);
+  box-shadow: 0 0 0 3px rgba(45, 143, 94, 0.85), 0 0 16px rgba(23, 74, 58, 0.7);
+}
+
+/* 方形 (商户/资源) */
+.marker-normal-square {
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: #c9484b;
+  border: 2px solid #ffffff;
+  box-shadow: 0 4px 14px rgba(201, 72, 75, 0.3);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: var(--font-qingke), serif;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.liuzu-marker-anchor:hover .marker-normal-square {
+  transform: scale(1.08);
+  box-shadow: 0 0 12px rgba(201, 72, 75, 0.6);
+}
+
+.liuzu-marker-anchor.selected .marker-normal-square {
+  transform: scale(1.14);
+  box-shadow: 0 0 0 3px rgba(201, 72, 75, 0.85), 0 0 16px rgba(201, 72, 75, 0.7);
+}
+
+/* 六边形 (村落) */
+.marker-normal-hexagon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: #4a8c6f;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 800;
+  font-size: 13px;
+  font-family: var(--font-qingke), serif;
+}
+
+/* 4. 用户当前位置 Marker */
+.marker-user-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #2f74a8;
+  border: 2.5px solid #ffffff;
+  box-shadow: 0 0 0 0 rgba(47, 116, 168, 0.6), 0 4px 12px rgba(14, 51, 40, 0.3);
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 11px;
+  font-weight: 900;
+  animation: userPulse 2.2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 5. 动效 Keyframes */
+@keyframes ringShimmer {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.6;
+    box-shadow: 0 0 6px rgba(216, 167, 70, 0.5);
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 16px rgba(216, 167, 70, 0.85);
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.6;
+    box-shadow: 0 0 6px rgba(216, 167, 70, 0.5);
+  }
+}
+
+@keyframes userPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(47, 116, 168, 0.7), 0 4px 12px rgba(14, 51, 40, 0.3);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(47, 116, 168, 0), 0 4px 12px rgba(14, 51, 40, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(47, 116, 168, 0), 0 4px 12px rgba(14, 51, 40, 0.3);
+  }
+}
