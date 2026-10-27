@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "assetVersion": "v2",
+  "downloadedAt": "2026-08-15",
+  "policy": {
+    "exactSpotImagesAreExactOnly": true,
+    "contextRequiresDisclosure": true,
+    "unknownLicenseIsExcluded": true,
+    "operationalClaimsAreForbidden": true
+  },
+  "assets": [
+    {
+      "id": "guoen-temple-pkkj-20260527",
+      "file": "guoen-temple-pkkj-20260527-original.jpg",
+      "deliveryFile": "../licensed/guoen-temple-20260527-1280.jpg",
+      "spotId": "guoen-temple",
+      "exact": true,
+      "subject": "Guo'en Temple, Xinxing County",
+      "creator": "Pkkj",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E5%9B%BD%E6%81%A9%E5%AF%BA_20260527_144925.jpg",
+      "sourceOriginalUrl": "https://upload.wikimedia.org/wikipedia/commons/0/09/%E5%9B%BD%E6%81%A9%E5%AF%BA_20260527_144925.jpg",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "width": 4003,
+      "height": 3014,
+      "sha256": "7286da5f7153c6b73dd27311d28f4b66416128971e1b7dbafe7d5ea4bfd891b3",
+      "deliverySha256": "e3a3d1a548a765dc6a05770333f5530e20a7880bef22a535f4091d8a299c4ce1",
+      "restriction": "Does not prove current opening, entrance, crowd, access or route conditions."
+    },
+    {
+      "id": "xinxing-tianlu-qiumao-20160326-01",
+      "file": "xinxing-tianlu-qiumao-20160326-01-original.jpg",
+      "deliveryFile": "../licensed/xinxing-tianlu-01.jpg",
+      "spotId": null,
+      "contextualSpotIds": ["huineng-residence", "chanyu-town"],
+      "exact": false,
+      "subject": "Tianlu Mountain, Xinxing County regional context",
+      "creator": "Qiu Mao",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E9%9C%B2%E5%B1%B1%E8%B6%8A%E9%87%8E%E7%A9%BF%E8%B6%8A20160326_-_panoramio_(1).jpg",
+      "sourceOriginalUrl": "https://upload.wikimedia.org/wikipedia/commons/4/48/%E5%A4%A9%E9%9C%B2%E5%B1%B1%E8%B6%8A%E9%87%8E%E7%A9%BF%E8%B6%8A20160326_-_panoramio_%281%29.jpg",
+      "license": "CC BY 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+      "width": 4912,
+      "height": 3264,
+      "sha256": "4277bb93a9ac809db5bc3405cde785f24484c441b3bcdb94870c6f8b0a2290cb",
+      "deliverySha256": "e2498133a23ece1876f449e4a97e377a4fe8df38bd93d0ebaa4fba92a673000c",
+      "restriction": "Regional context only; never label as Six Patriarch Town or as any product spot."
+    }
+  ],
+  "legacyDeliveryAssets": [
+    {
+      "id": "xinxing-tianlu-qiumao-20160326-10",
+      "file": "../licensed/xinxing-tianlu-02.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E9%9C%B2%E5%B1%B1%E8%B6%8A%E9%87%8E%E7%A9%BF%E8%B6%8A20160326_-_panoramio_(10).jpg",
+      "creator": "Qiu Mao",
+      "license": "CC BY 3.0",
+      "sha256": "b1c6cc00dcc9937c3e1fdb087ca9ea7dd0352ac1a35fa4e85a237e68fff98b37",
+      "exact": false,
+      "spotId": null,
+      "contextualSpotIds": ["zangfo-valley"]
+    },
+    {
+      "id": "xinxing-tianlu-qiumao-20160326-20",
+      "file": "../licensed/xinxing-tianlu-03.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:%E5%A4%A9%E9%9C%B2%E5%B1%B1%E8%B6%8A%E9%87%8E%E7%A9%BF%E8%B6%8A20160326_-_panoramio_(20).jpg",
+      "creator": "Qiu Mao",
+      "license": "CC BY 3.0",
+      "sha256": "8699e376fe0fd6599cb8f9103413786f2cd898bd8efc2fcb290cd58082905ae2",
+      "exact": false,
+      "spotId": null,
+      "contextualSpotIds": ["longshan-spring"]
+    }
+  ],
+  "spotCoverage": {
+    "guoen-temple": "EXACT_LICENSED",
+    "huineng-residence": "CONTEXT_ONLY",
+    "zangfo-valley": "CONTEXT_ONLY",
+    "longshan-spring": "CONTEXT_ONLY",
+    "chanyu-town": "CONTEXT_ONLY"
+  }
+}

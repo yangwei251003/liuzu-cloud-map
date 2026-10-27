@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "scenicAreaId": "fictional-park",
+  "networkRevision": "fictional-network-v1",
+  "operationalVersion": 7,
+  "issuedAt": "2026-08-15T07:30:00.000Z",
+  "expiresAt": "2026-12-10T00:00:00.000Z",
+  "sourceReference": "TEST-EVIDENCE://fictional/operations-v7",
+  "responsibleParty": "Fictional Operations",
+  "edgeStates": [
+    { "edgeId": "edge-public-access", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/public", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1, "crowdLevel": "LOW", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-stairs-shortcut", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/stairs", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1.2, "crowdLevel": "HIGH", "weatherImpact": "RAIN" } },
+    { "edgeId": "edge-main-start", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/main-start", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1, "crowdLevel": "MODERATE", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-main-finish", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/main-finish", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1, "crowdLevel": "MODERATE", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-accessible-alt-start", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/alt-start", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1.1, "crowdLevel": "LOW", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-accessible-alt-finish", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/alt-finish", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1.1, "crowdLevel": "LOW", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-one-way-access", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/one-way-access", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1, "crowdLevel": "LOW", "weatherImpact": "NONE" } },
+    { "edgeId": "edge-one-way-terminal", "status": "OPEN", "checkedAt": "2026-08-15T07:30:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/operations-v7/one-way-terminal", "responsibleParty": "Fictional Operations", "routing": { "travelTimeMultiplier": 1, "crowdLevel": "LOW", "weatherImpact": "NONE" } }
+  ]
+}

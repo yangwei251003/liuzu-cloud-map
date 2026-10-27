@@ -1,0 +1,10 @@
+import { build } from 'esbuild';
+import { cpSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+const root=resolve(import.meta.dirname,'..'),out=resolve(root,'preview-dist');
+rmSync(out,{recursive:true,force:true});mkdirSync(out,{recursive:true});
+for(const file of ['index.html','style.css'])cpSync(resolve(root,'preview',file),resolve(out,file));
+cpSync(resolve(root,'docs/images'),resolve(out,'images'),{recursive:true});
+await build({entryPoints:[resolve(root,'preview/app.mjs')],outfile:resolve(out,'app.js'),bundle:true,minify:true,platform:'browser',format:'esm',target:['es2020']});
+writeFileSync(resolve(out,'.nojekyll'),'');
+console.log('Built static candidate-route core demonstration. No Next API, accounts, model or map keys bundled.');

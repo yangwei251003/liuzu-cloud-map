@@ -1,0 +1,12 @@
+{
+  "name": "liuzu-migration-017-regression",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.12"
+  },
+  "scripts": {
+    "test": "node test-migration017.mjs"
+  }
+}

@@ -1,0 +1,46 @@
+.page {
+  min-height: 100dvh;
+  padding: clamp(2rem, 6vw, 5rem) var(--page-gutter) 5rem;
+  color: var(--color-ink);
+  background: radial-gradient(circle at 90% 8%, rgb(212 183 126 / 18%), transparent 28rem), var(--color-canvas);
+}
+
+.header,
+.grid,
+.samples {
+  width: min(100%, 78rem);
+  margin-inline: auto;
+}
+
+.header { margin-bottom: 2rem; }
+.eyebrow,
+.role { color: var(--color-route-ink); font-family: var(--font-ui); font-size: .68rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+.header h1 { max-width: 14ch; margin: .8rem 0 1rem; font-family: var(--font-display); font-size: clamp(2.8rem, 7vw, 6.4rem); font-weight: 620; letter-spacing: .01em; line-height: 1.08; }
+.lede { max-width: 48rem; margin: 0; color: var(--color-text-muted); font-family: var(--font-ui); font-size: 1rem; line-height: 1.8; }
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.card { min-height: 16rem; padding: clamp(1.2rem, 3vw, 2rem); border: 1px solid rgb(23 63 53 / 12%); border-radius: 1.5rem; background: rgb(255 250 240 / 80%); box-shadow: 0 .8rem 2.5rem rgb(31 63 52 / 8%); }
+.card h2 { margin: 2rem 0 .9rem; color: var(--color-ink); }
+.card p { max-width: 30rem; margin: 0; color: var(--color-text-muted); font-family: var(--font-ui); font-size: .9rem; line-height: 1.75; }
+.heroDisplay h2 { color: var(--pine-800); font-family: var(--font-xiukai); font-size: clamp(4.5rem, 10vw, 8rem); font-weight: 400; letter-spacing: -.02em; line-height: .9; }
+.culturalDisplay h2 { font-family: var(--font-qingke); font-size: clamp(2.3rem, 5vw, 4.7rem); font-weight: 400; letter-spacing: .04em; line-height: 1.1; }
+.xingkai h2 { color: var(--pine-800); font-family: var(--font-xingkai); font-size: clamp(2.2rem, 4.8vw, 4.5rem); font-weight: 400; letter-spacing: .02em; line-height: 1.16; }
+.humanistic h2 { font-family: var(--font-wenkai); font-size: clamp(2.1rem, 4vw, 3.8rem); font-weight: 500; letter-spacing: .035em; line-height: 1.25; }
+.zenMark h2 { color: var(--tea-700); font-family: var(--font-chanqu); font-size: clamp(3.5rem, 8vw, 6rem); font-weight: 400; letter-spacing: .16em; line-height: 1; }
+.uiRole h2 { font-family: var(--font-ui); font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.03em; }
+.uiRole button { min-height: 2.75rem; margin-top: 1.2rem; padding: .6rem 1rem; border: 0; border-radius: 999px; color: white; background: var(--color-primary); font-family: var(--font-ui); font-weight: 650; }
+
+.samples { display: grid; grid-template-columns: 15rem 1fr; gap: 2rem; align-items: start; margin-top: 1rem; padding: 1.5rem; border-radius: 1.5rem; background: var(--color-primary); color: var(--moon-0); }
+.samples h2 { margin: .6rem 0 0; font-family: var(--font-display); font-size: 1.8rem; font-weight: 620; }
+.sampleGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+.sampleGrid span { padding: 1rem .25rem; border-bottom: 1px solid rgb(255 255 255 / 20%); font-family: var(--font-wenkai); font-size: clamp(1.15rem, 2.5vw, 2rem); font-weight: 500; letter-spacing: .06em; }
+
+@media (max-width: 700px) {
+  .grid { grid-template-columns: 1fr; }
+  .samples { grid-template-columns: 1fr; }
+  .sampleGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page * { scroll-behavior: auto; }
+}

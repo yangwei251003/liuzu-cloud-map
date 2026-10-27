@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "scenicAreaId": "fictional-park",
+  "revision": "fictional-network-v1",
+  "publicationStatus": "PUBLISHED",
+  "publishedAt": "2026-08-15T07:00:00.000Z",
+  "withdrawnAt": null,
+  "expiresAt": "2026-12-15T00:00:00.000Z",
+  "coordinateSystem": "WGS84",
+  "source": {
+    "sourceId": "fictional-field-survey-v1",
+    "category": "AUTHORIZED_FIELD_SURVEY",
+    "provider": "Fictional Route Test Team",
+    "acquiredAt": "2026-08-14T02:00:00.000Z",
+    "evidenceReference": "TEST-EVIDENCE://fictional/network-v1"
+  },
+  "rights": {
+    "status": "CLEARED",
+    "rightsHolder": "Fictional Park Test Owner",
+    "licenseReference": "TEST-EVIDENCE://fictional/rights-v1",
+    "validUntil": "2026-12-20T00:00:00.000Z",
+    "allowsDisplay": true,
+    "allowsRouting": true,
+    "allowsCaching": false,
+    "allowsDerivatives": false
+  },
+  "review": {
+    "status": "APPROVED",
+    "reviewedRevision": "fictional-network-v1",
+    "gisReviewer": "Fictional GIS Reviewer A",
+    "managementApprover": "Fictional Manager B",
+    "reviewedAt": "2026-08-15T06:30:00.000Z",
+    "expiresAt": "2026-12-20T00:00:00.000Z",
+    "evidenceReference": "TEST-EVIDENCE://fictional/review-v1"
+  },
+  "entrances": [
+    {
+      "id": "fictional-main-entry",
+      "name": "虚构主入口",
+      "type": "ENTRY_EXIT",
+      "coordinate": {
+        "longitude": 100.001,
+        "latitude": 20,
+        "coordinateSystem": "WGS84",
+        "accuracyMeters": 1,
+        "capturedAt": "2026-08-14T02:00:00.000Z",
+        "sourceReference": "TEST-EVIDENCE://fictional/entry-coordinate"
+      },
+      "verification": {
+        "status": "MANAGEMENT_APPROVED",
+        "checkedAt": "2026-08-14T03:00:00.000Z",
+        "expiresAt": "2026-12-20T00:00:00.000Z",
+        "verifier": "Fictional Field Verifier A",
+        "managementApprover": "Fictional Entry Approver B",
+        "evidenceReference": "TEST-EVIDENCE://fictional/entry-v1"
+      },
+      "publicNodeId": "public-entry",
+      "internalNodeId": "internal-entry"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "public-origin",
+      "layer": "PUBLIC",
+      "type": "TRANSIT",
+      "entranceId": null,
+      "coordinate": { "longitude": 100, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/public-origin" }
+    },
+    {
+      "id": "public-entry",
+      "layer": "PUBLIC",
+      "type": "ENTRANCE_CONNECTOR",
+      "entranceId": "fictional-main-entry",
+      "coordinate": { "longitude": 100.001, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/public-entry" }
+    },
+    {
+      "id": "internal-entry",
+      "layer": "INTERNAL",
+      "type": "ENTRANCE_CONNECTOR",
+      "entranceId": "fictional-main-entry",
+      "coordinate": { "longitude": 100.001, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/internal-entry" }
+    },
+    {
+      "id": "junction-main",
+      "layer": "INTERNAL",
+      "type": "JUNCTION",
+      "entranceId": null,
+      "coordinate": { "longitude": 100.002, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/junction-main" }
+    },
+    {
+      "id": "destination",
+      "layer": "INTERNAL",
+      "type": "DESTINATION",
+      "entranceId": null,
+      "coordinate": { "longitude": 100.003, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/destination" }
+    },
+    {
+      "id": "junction-alt",
+      "layer": "INTERNAL",
+      "type": "JUNCTION",
+      "entranceId": null,
+      "coordinate": { "longitude": 100.001, "latitude": 20.001, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/junction-alt" }
+    },
+    {
+      "id": "one-way-start",
+      "layer": "INTERNAL",
+      "type": "JUNCTION",
+      "entranceId": null,
+      "coordinate": { "longitude": 100.004, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/one-way-start" }
+    },
+    {
+      "id": "one-way-end",
+      "layer": "INTERNAL",
+      "type": "DESTINATION",
+      "entranceId": null,
+      "coordinate": { "longitude": 100.005, "latitude": 20, "coordinateSystem": "WGS84", "accuracyMeters": 1, "capturedAt": "2026-08-14T02:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/node/one-way-end" }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-public-access",
+      "layer": "PUBLIC",
+      "fromNodeId": "public-origin",
+      "toNodeId": "public-entry",
+      "walkingDirection": "BIDIRECTIONAL",
+      "geometry": { "type": "LineString", "coordinates": [[100, 20], [100.001, 20]] },
+      "distanceMeters": 100,
+      "estimatedMinutes": 2,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/public" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 2, "minWidthMeters": 1.5, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "WALKWAY", "difficulty": "EASY", "scenicScore": 50, "evidenceReference": "TEST-EVIDENCE://fictional/routing/public" }
+    },
+    {
+      "id": "edge-stairs-shortcut",
+      "layer": "INTERNAL",
+      "fromNodeId": "internal-entry",
+      "toNodeId": "destination",
+      "walkingDirection": "FORWARD",
+      "geometry": { "type": "LineString", "coordinates": [[100.001, 20], [100.003, 20]] },
+      "distanceMeters": 200,
+      "estimatedMinutes": 1,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_NOT_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/stairs" },
+      "constraints": { "stairs": "PRESENT", "surface": "PAVED", "maxSlopePercent": 8, "minWidthMeters": 1.2, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "STAIRS", "difficulty": "HARD", "scenicScore": 5, "evidenceReference": "TEST-EVIDENCE://fictional/routing/stairs" }
+    },
+    {
+      "id": "edge-main-start",
+      "layer": "INTERNAL",
+      "fromNodeId": "internal-entry",
+      "toNodeId": "junction-main",
+      "walkingDirection": "FORWARD",
+      "geometry": { "type": "LineString", "coordinates": [[100.001, 20], [100.002, 20]] },
+      "distanceMeters": 100,
+      "estimatedMinutes": 2,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_PARTIAL", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/main" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.2, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "BOARDWALK", "difficulty": "EASY", "scenicScore": 100, "evidenceReference": "TEST-EVIDENCE://fictional/routing/main-start" }
+    },
+    {
+      "id": "edge-main-finish",
+      "layer": "INTERNAL",
+      "fromNodeId": "junction-main",
+      "toNodeId": "destination",
+      "walkingDirection": "FORWARD",
+      "geometry": { "type": "LineString", "coordinates": [[100.002, 20], [100.003, 20]] },
+      "distanceMeters": 100,
+      "estimatedMinutes": 2,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_PARTIAL", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/main" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.2, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "BOARDWALK", "difficulty": "EASY", "scenicScore": 100, "evidenceReference": "TEST-EVIDENCE://fictional/routing/main-finish" }
+    },
+    {
+      "id": "edge-accessible-alt-start",
+      "layer": "INTERNAL",
+      "fromNodeId": "internal-entry",
+      "toNodeId": "junction-alt",
+      "walkingDirection": "BIDIRECTIONAL",
+      "geometry": { "type": "LineString", "coordinates": [[100.001, 20], [100.001, 20.001]] },
+      "distanceMeters": 150,
+      "estimatedMinutes": 3,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/alt" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.5, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "WALKWAY", "difficulty": "EASY", "scenicScore": 70, "evidenceReference": "TEST-EVIDENCE://fictional/routing/alt-start" }
+    },
+    {
+      "id": "edge-accessible-alt-finish",
+      "layer": "INTERNAL",
+      "fromNodeId": "junction-alt",
+      "toNodeId": "destination",
+      "walkingDirection": "BIDIRECTIONAL",
+      "geometry": { "type": "LineString", "coordinates": [[100.001, 20.001], [100.003, 20]] },
+      "distanceMeters": 180,
+      "estimatedMinutes": 4,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/alt" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.5, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "WALKWAY", "difficulty": "EASY", "scenicScore": 70, "evidenceReference": "TEST-EVIDENCE://fictional/routing/alt-finish" }
+    },
+    {
+      "id": "edge-one-way-access",
+      "layer": "INTERNAL",
+      "fromNodeId": "internal-entry",
+      "toNodeId": "one-way-start",
+      "walkingDirection": "BIDIRECTIONAL",
+      "geometry": { "type": "LineString", "coordinates": [[100.001, 20], [100.004, 20]] },
+      "distanceMeters": 300,
+      "estimatedMinutes": 5,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/one-way-access" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.5, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "MOUNTAIN_TRAIL", "difficulty": "MODERATE", "scenicScore": 65, "evidenceReference": "TEST-EVIDENCE://fictional/routing/one-way-access" }
+    },
+    {
+      "id": "edge-one-way-terminal",
+      "layer": "INTERNAL",
+      "fromNodeId": "one-way-start",
+      "toNodeId": "one-way-end",
+      "walkingDirection": "FORWARD",
+      "geometry": { "type": "LineString", "coordinates": [[100.004, 20], [100.005, 20]] },
+      "distanceMeters": 100,
+      "estimatedMinutes": 2,
+      "verificationStatus": "MANAGEMENT_APPROVED",
+      "accessibility": { "status": "VERIFIED_ACCESSIBLE", "checkedAt": "2026-08-14T04:00:00.000Z", "expiresAt": "2026-12-20T00:00:00.000Z", "evidenceReference": "TEST-EVIDENCE://fictional/access/one-way-terminal" },
+      "constraints": { "stairs": "NONE", "surface": "PAVED", "maxSlopePercent": 3, "minWidthMeters": 1.5, "lighting": "PRESENT", "notes": [] },
+      "dynamicStatus": { "status": "OPEN", "checkedAt": "2026-08-15T07:00:00.000Z", "expiresAt": "2026-12-10T00:00:00.000Z", "sourceReference": "TEST-EVIDENCE://fictional/static-status", "responsibleParty": "Fictional Operations" },
+      "routing": { "traversalMode": "MOUNTAIN_TRAIL", "difficulty": "MODERATE", "scenicScore": 75, "evidenceReference": "TEST-EVIDENCE://fictional/routing/one-way-terminal" }
+    }
+  ]
+}

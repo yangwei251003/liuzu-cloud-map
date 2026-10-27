@@ -1,0 +1,331 @@
+[
+  {
+    "path": ".vercelignore",
+    "bytes": 149,
+    "sha256": "d7627ca9f6470a543155a852c470d8b72a04e87c85184bcd768e9de57c728f66",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "AGENTS.md",
+    "bytes": 678,
+    "sha256": "63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "CLAUDE.md",
+    "bytes": 11,
+    "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/README.md",
+    "bytes": 6872,
+    "sha256": "1b33cc88998c69e7ddebe8785bbc1edb1f601621336730a000966d4894b92015",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-external-nav-a806acd-v0.3.1-debug.apk.sha256.txt",
+    "bytes": 122,
+    "sha256": "1a201fca216a94db4fd661802299ff6348c1b292229b9fb9142645ae5f0b6532",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-external-nav-e133fcd-v0.3.1-debug.apk.sha256.txt",
+    "bytes": 122,
+    "sha256": "1382a0d213bb8c0abb1d509f154b06581a8698753640d348ad96d8d1697ac089",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-latest-669c1d0-v0.3.0-debug.apk.sha256.txt",
+    "bytes": 115,
+    "sha256": "661b36402d0b393227017100f76a15a457a3191b9e8aa9bed56fe96fd156e9c0",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-latest-6cc71a8-v0.2.0-debug.apk.sha256.txt",
+    "bytes": 115,
+    "sha256": "0fc1985ec44963beba98558cd56324719faa38ad4b81ce4cc4235cba2de4e801",
+    "source_status": "tracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-lockup-v2.png",
+    "bytes": 607182,
+    "sha256": "81fa77b34e4659d536a051df715358b7cbe2db52159b525f55768309237df1c0",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-source-v2.png",
+    "bytes": 1075470,
+    "sha256": "00e1071ffcc60f39a96f5492a612e01bb7bb292647a3b30a3b40d81ea09aa0cc",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/liuzu-cloud-tour-symbol-v2.png",
+    "bytes": 350766,
+    "sha256": "4e92a9a7f788c4fb862c220c1e0c1900c10b73514ee1e5f3cc862fb192660c03",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/brand/v2/manifest.json",
+    "bytes": 1599,
+    "sha256": "aed16563e87163e295cd425ce482325c1be94b94986de0de90d359f8ee09eb70",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/answering.webp",
+    "bytes": 123324,
+    "sha256": "70393177595f52f77a3314093b76fcb208296f72bbd2c2c7bd854364cd1cec86",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/greeting.webp",
+    "bytes": 100126,
+    "sha256": "4070e841f1dc89d9a53090bce52ee585ff281968de47ba5466cece6891638374",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/listening.webp",
+    "bytes": 84092,
+    "sha256": "a23110c99c5d649a64d05594166a43a17babf1ff885c6b097bb72da14e621f42",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/manifest.json",
+    "bytes": 3726,
+    "sha256": "fa27fffc6249147f094e7197fd2f27cf3958b6457b861a8d77e161dd9801555d",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/pointing.webp",
+    "bytes": 84140,
+    "sha256": "983c159bf713c540577bf6b37b74f048f5905eef86d5762703748f521b4f9f69",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/reading.webp",
+    "bytes": 112726,
+    "sha256": "a177bbcfb3c1d5fc519aa700a08e776e700341c51081725a03df06bf1fbcc631",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/resting.webp",
+    "bytes": 123504,
+    "sha256": "f3617f14cce255e4a911eca8c6832f7c2691aa509df00b19cab7ddb82b53ebfd",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/route.webp",
+    "bytes": 88942,
+    "sha256": "9a2b4b5a32a322d2fc1cea166caffa4fc5c3afc14696ecf83e9d3ee017fc16c5",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/success.webp",
+    "bytes": 87780,
+    "sha256": "15193ca9d21b16e3bae5ed5e06981aa168e4e33691eb9f02caa11776c742399b",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/thinking.webp",
+    "bytes": 81208,
+    "sha256": "c83f05b9431e3c5e4d14434c582d235db94697955ce306c9cea9e05dfba90f68",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/chanxiaoli/v1/walking.webp",
+    "bytes": 139524,
+    "sha256": "24fe709cbcae6c2f74a438d05be382d2a12d022b2afcfb1b890b002943517cb7",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/liuzu-concept-journey-poster.webp",
+    "bytes": 77074,
+    "sha256": "fb2cbbd715bc76f2bbb9531ae67dd97861e1fd20a11c622e1f64ee2cd183360e",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/liuzu-concept-journey.mp4",
+    "bytes": 2474801,
+    "sha256": "07135e4a92adeeec11e609ccae3f2f55ec21435b9555e1e91b80b66e2080dd82",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/hero/v1/manifest.json",
+    "bytes": 978,
+    "sha256": "513e8d3ef707b41e8c7416c772dee2db9171f8020f01405d006ee8426a84dbf4",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/map-skins/v5/retro-guofeng-ornament-v2.png",
+    "bytes": 1039222,
+    "sha256": "0ea10e84186549cf3c223e98907c82c257e0ce128a9438633caab447a2862914",
+    "source_status": "tracked",
+    "reason": "reference-derived-style-rights-not-evidenced"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-aerial.webp",
+    "bytes": 165966,
+    "sha256": "a230ad34cb1b9db06af779da2b09074f6e087b76e63d9bbcd19ebe9264fc9613",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-hero.webp",
+    "bytes": 424880,
+    "sha256": "72047c4a23574e983d0c5d4e99724e9c87ad7c0998a7420233575aa1ac8a6e0c",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/chanyu-town-night.webp",
+    "bytes": 180770,
+    "sha256": "b00bf2f1636e228d222dbfe4afa28a877625d70f8172c827eb18e837fbade75a",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/guoen-temple-documentary.mp4",
+    "bytes": 69053593,
+    "sha256": "ea1f2477254eeefb16e4bca97c1838803408908177d926238b15f09f539aa49e",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/guoen-temple-hero.webp",
+    "bytes": 462574,
+    "sha256": "94da1bcb6229b454cfb2ea3eade6edf38b3de5b844eec7f2b274da127af55fa1",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/huineng-residence-hero.webp",
+    "bytes": 278116,
+    "sha256": "2399032513fe3c0188de17e653aef07e23a4277e2f7462886a469e0b91a75364",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-entry.webp",
+    "bytes": 114800,
+    "sha256": "f256a3cd070e30d5f14ddf7aef8c9893873175bd044ff26a7d050afe7ec78c48",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-hero.webp",
+    "bytes": 420800,
+    "sha256": "e0e813041fbf38753634e07408871e90fc2e31f3187e4da2eb22ef14a858cc7b",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/longshan-spring-poster.webp",
+    "bytes": 125288,
+    "sha256": "94db13837f3204378f512b27ed203702ac8ab85363755dcb8335a413eec4f367",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v1/xinxing-promo-short.mp4",
+    "bytes": 2474801,
+    "sha256": "07135e4a92adeeec11e609ccae3f2f55ec21435b9555e1e91b80b66e2080dd82",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v2/zangfo-pond.webp",
+    "bytes": 688652,
+    "sha256": "b3e0da9ecfa4faddf691b0f4767854ce77966c87bfd2de6022c692397602e1f9",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/assets/scenic/user-v2/zangfo-waterwheel.webp",
+    "bytes": 479534,
+    "sha256": "1c0b9c5a96f9ad5c9317ef63e2d4c8469bd6bd048f9c06a53c64a6ba43b11f47",
+    "source_status": "tracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-font-motion-A8bmM6x-v0.5.0-debug.apk.sha256.txt",
+    "bytes": 120,
+    "sha256": "473d78bb3278c7460e16ac763eec307c29741570497072840a4232356c7e49f7",
+    "source_status": "untracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "mobile/deliverables/liuzu-cloud-tour-motion-live-AcC7BnL-v0.6.0-debug.apk.sha256.txt",
+    "bytes": 120,
+    "sha256": "9ce8d7297495d8fec40405010ad4c84f4e711329ef6fa9af8ab7bf87d5f4e53e",
+    "source_status": "untracked",
+    "reason": "historical-deployment-evidence-or-tool-context"
+  },
+  {
+    "path": "public/fonts/fz-qingke-yuesong.woff2",
+    "bytes": 14988,
+    "sha256": "99c376fae9f45fe661871838c86a34aaf075cf4a73b422d918b2e54416fd0d7f",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/fz-songke-xiukai.woff2",
+    "bytes": 17852,
+    "sha256": "dd26e983eca5fe0a4ab1b8450c62f2328700afc7caaeca2d1c214ad0d9332bee",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/fz-xingkai.woff2",
+    "bytes": 21212,
+    "sha256": "3fff6719a9778e1266b7c71ef2ef65866aeff0285855dc75ff751a489eb6bb98",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-beiwei-xiejing.woff2",
+    "bytes": 39432,
+    "sha256": "4778adbc48e701922779a2fd365bad3f45cc4c86b90d745c154860a4337b744f",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-shangwei-shoushu.woff2",
+    "bytes": 110408,
+    "sha256": "414a86f8366f4eeec5cb45a4268699dd7bc027d388eccfe10862eadd02669065",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  },
+  {
+    "path": "public/fonts/hy-zengxiang-chanqu.woff2",
+    "bytes": 78596,
+    "sha256": "e346235694bfc393a14516c11cb05cc22f1b96b3de7aede76bf84258d009cd44",
+    "source_status": "untracked",
+    "reason": "redistribution-rights-unconfirmed"
+  }
+]

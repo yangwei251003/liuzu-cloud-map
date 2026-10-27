@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 5,
+  "policyId": "liuzu-formal-offline-pack-only",
+  "activeCacheName": "liuzu-cloud-tour-v8",
+  "offlinePackCacheName": "liuzu-cloud-tour-offline-pack-v2",
+  "retiredCacheNames": [
+    "liuzu-cloud-tour-v1",
+    "liuzu-cloud-tour-v2",
+    "liuzu-cloud-tour-v3",
+    "liuzu-cloud-tour-v4",
+    "liuzu-cloud-tour-v5",
+    "liuzu-cloud-tour-v6",
+    "liuzu-cloud-tour-v7",
+    "liuzu-cloud-tour-offline-pack-v0",
+    "liuzu-cloud-tour-offline-pack-v1"
+  ],
+  "appRoutes": [
+    "/",
+    "/arrival",
+    "/cloud-tour",
+    "/map",
+    "/plan",
+    "/guide",
+    "/guide/ask",
+    "/journey",
+    "/journey/knowledge",
+    "/account",
+    "/share",
+    "/privacy",
+    "/admin",
+    "/admin/readiness"
+  ],
+  "shellEntries": [
+    "/",
+    "/privacy",
+    "/assets/images/neutral-app-icon.svg"
+  ],
+  "offlinePackEntries": [],
+  "forbiddenCachePrefixes": ["/api/", "/data/gis/"],
+  "networkOnlyPrefixes": ["/share", "/account", "/admin"]
+}

@@ -1,0 +1,182 @@
+{
+  "schemaVersion": "product-acceptance.v1",
+  "baseline": {
+    "name": "Gate 2 approved blueprint and 2026-08-15 implementation audit",
+    "asOf": "2026-08-15",
+    "sourceFiles": [
+      "product-design/01-产品需求文档PRD.md",
+      "product-design/03-功能地图.md",
+      "product-design/04-MVP与版本边界.md",
+      "project-intelligence/handoffs/Gate2审核包.md",
+      "project-intelligence/handoffs/第三阶段实施差距矩阵.md"
+    ]
+  },
+  "allowedStatuses": [
+    "IMPLEMENTED_DEMO",
+    "SAFE_DEGRADED",
+    "EXTERNAL_BLOCKED",
+    "MISSING"
+  ],
+  "externalBlockers": [
+    {
+      "id": "EXT-GIS-OFFICIAL",
+      "title": "正式范围、入口、内部路网、设施与发布权",
+      "evidenceFiles": ["project-intelligence/risks/风险登记册.md"],
+      "sourceRefs": ["DEP-P01", "RSK-001", "RSK-002", "RSK-003"]
+    },
+    {
+      "id": "EXT-GIS-FIELD",
+      "title": "现场复走、可达性、定位、弱网与安全验收",
+      "evidenceFiles": ["project-intelligence/testing/01-测试与验收方案.md"],
+      "sourceRefs": ["DEP-P02", "RSK-002", "RSK-009"]
+    },
+    {
+      "id": "EXT-OPS-LIVE",
+      "title": "动态状态、官方服务渠道、责任人与 SLA",
+      "evidenceFiles": ["project-intelligence/risks/风险登记册.md"],
+      "sourceRefs": ["DEP-P04", "RSK-018"]
+    },
+    {
+      "id": "EXT-CONTENT-APPROVAL",
+      "title": "文化、宗教、文保、文稿与音频专业审核",
+      "evidenceFiles": ["project-intelligence/risks/风险登记册.md"],
+      "sourceRefs": ["DEP-P03", "RSK-004", "RSK-014"]
+    },
+    {
+      "id": "EXT-ASSET-RIGHTS",
+      "title": "品牌、IP 与媒体资产公开使用权",
+      "evidenceFiles": ["project-intelligence/assets/资产登记表.md"],
+      "sourceRefs": ["DEP-P06", "RSK-005", "RSK-006"]
+    },
+    {
+      "id": "EXT-IDENTITY-DB",
+      "title": "真实数据库、可信身份与跨设备所有权",
+      "evidenceFiles": ["database/README.md"],
+      "sourceRefs": ["G2-DEC-07", "RSK-019"]
+    },
+    {
+      "id": "EXT-PRODUCTION-GOVERNANCE",
+      "title": "不可变发布、撤回、审计与质量决定链",
+      "evidenceFiles": ["technical-design/01-系统架构.md"],
+      "sourceRefs": ["CTR-003", "CTR-005", "CTR-006", "CTR-014"]
+    },
+    {
+      "id": "EXT-LEGAL-SUPPLIER",
+      "title": "供应商、法务、隐私、合同与生产运维批准",
+      "evidenceFiles": ["project-intelligence/dependencies/01-资源与外部依赖计划.md"],
+      "sourceRefs": ["DEP-P08", "DEP-P09", "RSK-011"]
+    }
+  ],
+  "functionalRequirements": [
+    {"id":"FR-T01","title":"层级与到达方式","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T02","title":"正确入口","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/arrival-assistant.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T03","title":"标准地图与主题皮肤","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/ScenicMap.tsx","tests/e2e/core-flow.spec.ts"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T04","title":"内外路网分层","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-network.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T05","title":"设施与可达性","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/map-accessibility.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T06","title":"状态与异常","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T07","title":"导览会话","status":"SAFE_DEGRADED","evidenceFiles":["src/components/LiveGuide.tsx","tests/guide-session.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T08","title":"到点讲解","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/LiveGuide.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T09","title":"AI 追问","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/ai-guide/knowledge.ts","tests/ai-quality-golden-set.test.mjs"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T10","title":"弱网与权限降级","status":"SAFE_DEGRADED","evidenceFiles":["src/components/ConnectivityStatus.tsx","public/sw.js","tests/e2e/guide-resilience.spec.ts"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T11","title":"紧急入口","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/LiveGuide.tsx"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-T12","title":"保存","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/JourneyCenter.tsx","tests/journey-store.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D01","title":"合法内容入口","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/itinerary-extract.test.mjs"],"blockerIds":["EXT-LEGAL-SUPPLIER"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D02","title":"证据化提取","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/itinerary-extract/local.ts","tests/itinerary-extract.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D03","title":"POI 消歧","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/route-plan-store.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D04","title":"用户确认","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D05","title":"可执行校验","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-plan-store.ts","src/lib/release-readiness.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D06","title":"可编辑行程","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/route-plan-store.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D07","title":"执行衔接","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/guide-session-store.ts","tests/e2e/saved-route-revision.spec.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D08","title":"轻量打卡","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/guide-arrival-transaction.ts","tests/guide-arrival-transaction.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D09","title":"私有保存与链接分享","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-share.ts","src/lib/server/share-link-service.ts","tests/server-share-link-service.test.mjs"],"blockerIds":["EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-D10","title":"纠错与撤回","status":"SAFE_DEGRADED","evidenceFiles":["src/components/CorrectionForm.tsx","src/components/AdminGovernance.tsx"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O01","title":"运营状态编辑","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/admin-governance-store.ts"],"blockerIds":["EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O02","title":"紧急发布","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/AdminGovernance.tsx"],"blockerIds":["EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O03","title":"内容命题治理","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/admin-governance-store.ts"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O04","title":"讲解资产发布","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/AdminGovernance.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O05","title":"GIS 发布","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ReleaseReadinessWorkbench.tsx"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O06","title":"审计与撤回","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/admin-governance-store.ts"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE","EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O07","title":"AI 质量门禁","status":"SAFE_DEGRADED","evidenceFiles":["tests/fixtures/ai-guide-golden-set.v1.json","tests/ai-quality-golden-set.test.mjs"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-O08","title":"反馈处理","status":"SAFE_DEGRADED","evidenceFiles":["src/components/CorrectionForm.tsx","tests/admin-governance-store.test.mjs"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C01","title":"核心任务多通道","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/ScenicMap.tsx","src/components/LiveGuide.tsx"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C02","title":"户外与长者可读","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/map-accessibility.ts","tests/map-accessibility.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C03","title":"动效与音频控制","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/LiveGuide.tsx","src/app/globals.css"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C04","title":"最小权限","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/DataControl.tsx","src/components/TravelNotePlanner.tsx"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C05","title":"数据可控","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/data-control.ts","tests/data-control.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"FR-C06","title":"AI 身份与生成标识","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/AIGuidePanel.tsx","tests/ai-guide.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false}
+  ],
+  "mustRequirements": [
+    {"id":"MUST-S1-01","title":"核心区/扩展点与自驾/高铁分支","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-02","title":"核验入口；公路/内部网仅在入口衔接","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-network.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-03","title":"标准二维地图与主题皮肤保持空间/状态/进度","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/ScenicMap.tsx","tests/e2e/core-flow.spec.ts"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-04","title":"已发布内部路径、设施与开放/封闭状态","status":"EXTERNAL_BLOCKED","evidenceFiles":["public/data/gis/prototype-routes.geojson"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-05","title":"精度、前台导览、暂停/恢复/结束、手动到点","status":"SAFE_DEGRADED","evidenceFiles":["src/components/LiveGuide.tsx","tests/e2e/foreground-guidance.spec.ts"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-06","title":"有来源/审核/版本文字与合规音频或文字降级","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/ai-guide/knowledge.ts","src/components/LiveGuide.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-07","title":"AI 拒答/冲突并列，动态安全事实受控","status":"SAFE_DEGRADED","evidenceFiles":["tests/ai-quality-golden-set.test.mjs"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-08","title":"弱网、定位/地图/音频/AI/后台故障降级","status":"SAFE_DEGRADED","evidenceFiles":["public/sw.js","tests/e2e/guide-resilience.spec.ts"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-09","title":"紧急/人工渠道","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/LiveGuide.tsx"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S1-10","title":"私有保存","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/journey-store.ts","src/lib/saved-knowledge-store.ts"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-01","title":"自然语言需求与粘贴有权文本","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","src/lib/itinerary-extract/service.server.ts"],"blockerIds":["EXT-LEGAL-SUPPLIER"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-02","title":"地点/时间/顺序/约束原文证据与明确/推断","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/itinerary-extract/local.ts","tests/itinerary-extract.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-03","title":"多候选 POI 消歧、范围标签和确认","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/route-plan-store.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-04","title":"入口/路网/状态/约束校验与 READY/BLOCKED","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-plan-store.ts","src/lib/release-readiness.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-05","title":"增删/排序/停留/约束修改并重验","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/route-plan-store.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-06","title":"READY 行程无损进入现场导览","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/guide-session-store.ts","tests/e2e/saved-route-revision.spec.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-07","title":"用户确认式轻打卡","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/guide-arrival-transaction.ts","tests/guide-arrival-transaction.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-08","title":"默认私有、字段预览、可撤销/到期链接","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-share.ts","src/lib/server/share-link-service.ts"],"blockerIds":["EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-S2-09","title":"删除输入/行程/分享及联动说明","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/data-control.ts","tests/data-control.test.mjs"],"blockerIds":["EXT-IDENTITY-DB","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-01","title":"运营状态来源/责任/有效期/审核/过期/撤回/应急","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/admin-governance-store.ts"],"blockerIds":["EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-02","title":"文化命题/讲解来源/类型/许可/多审/版本/撤回","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/ai-guide/knowledge.ts","src/components/ReleaseReadinessWorkbench.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-03","title":"GIS 证据、现场核验、发布与封闭","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ReleaseReadinessWorkbench.tsx","tests/gis-data.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-04","title":"最小角色权限与职责分离","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/AdminGovernance.tsx","tests/admin-governance-store.test.mjs"],"blockerIds":["EXT-IDENTITY-DB","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-05","title":"黄金集、回归、零容忍门禁、反馈与审计","status":"SAFE_DEGRADED","evidenceFiles":["tests/ai-quality-golden-set.test.mjs","scripts/verify-project.mjs"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-06","title":"定位/语音/游记/分享分别告知、最小化、删除","status":"SAFE_DEGRADED","evidenceFiles":["src/components/DataControl.tsx","tests/data-control.test.mjs"],"blockerIds":["EXT-IDENTITY-DB","EXT-LEGAL-SUPPLIER"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"MUST-SUP-07","title":"动态状态/生成内容显示来源、时间、适用范围","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/AIGuidePanel.tsx","src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false}
+  ],
+  "p0Capabilities": [
+    {"id":"CAP-V001","title":"核心区/扩展点层级说明","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V002","title":"到达方式选择","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V003","title":"入口级目的地","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/arrival-assistant.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V004","title":"状态来源与时效","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/arrival-assistant.ts"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V005","title":"官方求助/人工回退","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/LiveGuide.tsx"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V101","title":"直接描述需求","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/TravelNotePlanner.tsx"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V102","title":"粘贴有权文本","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/itinerary-extract.test.mjs"],"blockerIds":["EXT-LEGAL-SUPPLIER"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V104","title":"原文片段证据","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/itinerary-extract/local.ts","tests/itinerary-extract.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V105","title":"明确/推断标记","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/itinerary-extract/types.ts","tests/itinerary-extract.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V106","title":"POI 多候选消歧","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","tests/route-plan-store.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V107","title":"未决问题清单","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","src/lib/route-plan-store.ts"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V108","title":"行动约束确认/删除","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V201","title":"行程草案时间线","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V202","title":"真实路线校验","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-network.ts","tests/route-network.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V203","title":"内外路网分层","status":"EXTERNAL_BLOCKED","evidenceFiles":["public/data/gis/route-network-manifest.v1.json"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V204","title":"修改后重新校验","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/route-plan-store.ts","tests/e2e/saved-route-revision.spec.ts"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V205","title":"阻塞项解释与修复","status":"SAFE_DEGRADED","evidenceFiles":["src/components/TravelNotePlanner.tsx","src/components/ReleaseReadinessWorkbench.tsx"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V301","title":"标准二维地图","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/components/ScenicMap.tsx","tests/gis-data.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V303","title":"前台位置与精度","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/foreground-guidance.ts","tests/foreground-guidance.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V304","title":"路线进度","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/guide-session-store.ts","tests/guide-session.test.mjs"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V305","title":"等价路线列表","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/map-accessibility.ts","tests/map-accessibility.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V306","title":"手动我已到达","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/guide-arrival-transaction.ts","tests/guide-arrival-transaction.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V307","title":"位置触发候选","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/foreground-guidance.ts","tests/foreground-guidance.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V308","title":"偏航处理","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/route-disruption.ts","src/components/LiveGuide.tsx","tests/route-disruption.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-GIS-FIELD","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V309","title":"弱网/权限/后台降级","status":"SAFE_DEGRADED","evidenceFiles":["public/sw.js","tests/e2e/guide-resilience.spec.ts"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V401","title":"已审核文字讲解","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/ai-guide/knowledge.ts"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V402","title":"已审核音频讲解","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/LiveGuide.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V404","title":"事实类型与引用","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/ai-guide/types.ts","src/components/AIGuidePanel.tsx"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V405","title":"受控 AI 追问","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/ai-guide/service.server.ts","tests/ai-quality-golden-set.test.mjs"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V502","title":"私有计划与足迹","status":"IMPLEMENTED_DEMO","evidenceFiles":["src/lib/journey-store.ts","tests/journey-store.test.mjs"],"blockerIds":[],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V504","title":"链接分享预览","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/SharedRouteViewer.tsx","src/lib/server/share-link-service.ts"],"blockerIds":["EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"CAP-V505","title":"可撤销/到期链接","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/route-share.ts","tests/server-share-link-service.test.mjs"],"blockerIds":["EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false}
+  ],
+  "acceptanceScenarios": [
+    {"id":"AC-01","title":"自驾核心到达","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx","tests/e2e/arrival-assistant.spec.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-02","title":"高铁与返程不确定","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/components/ArrivalAssistant.tsx","tests/e2e/arrival-assistant.spec.ts"],"blockerIds":["EXT-OPS-LIVE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-03","title":"游记含重名与范围外地点","status":"SAFE_DEGRADED","evidenceFiles":["tests/itinerary-extract.test.mjs","tests/route-plan-store.test.mjs"],"blockerIds":["EXT-GIS-OFFICIAL"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-04","title":"行动约束与未知可达性","status":"EXTERNAL_BLOCKED","evidenceFiles":["tests/route-plan-store.test.mjs","tests/map-accessibility.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-05","title":"宗教/文保讲解","status":"EXTERNAL_BLOCKED","evidenceFiles":["src/lib/ai-guide/knowledge.ts","tests/ai-guide.test.mjs"],"blockerIds":["EXT-CONTENT-APPROVAL","EXT-ASSET-RIGHTS"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-06","title":"弱网与低精度","status":"SAFE_DEGRADED","evidenceFiles":["tests/e2e/guide-resilience.spec.ts","tests/foreground-guidance.test.mjs"],"blockerIds":["EXT-GIS-FIELD"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-07","title":"路线中途封闭","status":"SAFE_DEGRADED","evidenceFiles":["src/lib/route-disruption.ts","src/components/LiveGuide.tsx","tests/route-disruption.test.mjs","tests/e2e/guide-resilience.spec.ts"],"blockerIds":["EXT-GIS-OFFICIAL","EXT-OPS-LIVE","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-08","title":"AI 无证据与提示注入","status":"SAFE_DEGRADED","evidenceFiles":["tests/fixtures/ai-guide-golden-set.v1.json","tests/ai-quality-golden-set.test.mjs"],"blockerIds":["EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-09","title":"私有与链接分享","status":"EXTERNAL_BLOCKED","evidenceFiles":["tests/route-share.test.mjs","tests/server-share-link-service.test.mjs"],"blockerIds":["EXT-IDENTITY-DB"],"requiredForProduction":true,"productionSatisfied":false},
+    {"id":"AC-10","title":"运营状态发布","status":"EXTERNAL_BLOCKED","evidenceFiles":["tests/admin-governance-store.test.mjs","tests/release-readiness.test.mjs"],"blockerIds":["EXT-OPS-LIVE","EXT-IDENTITY-DB","EXT-PRODUCTION-GOVERNANCE"],"requiredForProduction":true,"productionSatisfied":false}
+  ]
+}

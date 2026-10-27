@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "scenicAreaId": "liuzu-town",
+  "revision": "route-network-empty-v1",
+  "publicationStatus": "DRAFT",
+  "publishedAt": null,
+  "withdrawnAt": null,
+  "expiresAt": null,
+  "coordinateSystem": "WGS84",
+  "source": {
+    "sourceId": "project-empty-route-network",
+    "category": "PROJECT_EMPTY",
+    "provider": "六祖云游项目",
+    "acquiredAt": "2026-08-15T00:00:00.000Z",
+    "evidenceReference": "project-intelligence/dependencies/01-资源与外部依赖计划.md#DEP-GIS-02"
+  },
+  "rights": {
+    "status": "UNKNOWN",
+    "rightsHolder": null,
+    "licenseReference": null,
+    "validUntil": null,
+    "allowsDisplay": false,
+    "allowsRouting": false,
+    "allowsCaching": false,
+    "allowsDerivatives": false
+  },
+  "review": {
+    "status": "NOT_REVIEWED",
+    "reviewedRevision": null,
+    "gisReviewer": null,
+    "managementApprover": null,
+    "reviewedAt": null,
+    "expiresAt": null,
+    "evidenceReference": null
+  },
+  "entrances": [],
+  "nodes": [],
+  "edges": []
+}

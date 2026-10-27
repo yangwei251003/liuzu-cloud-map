@@ -1,0 +1,32 @@
+[
+  {
+    "path": "public/assets/media/scenic/licensed/xinxing-tianlu-01.jpg",
+    "sourceSha256": "d818571d5b9f0c9ecb14f54418337677e2ef7f273b5e776f923071dbb54692b7",
+    "releaseSha256": "e2498133a23ece1876f449e4a97e377a4fe8df38bd93d0ebaa4fba92a673000c",
+    "change": "Removed EXIF/XMP metadata segments; JPEG encoded image scan unchanged. Original photo license retained."
+  },
+  {
+    "path": "public/assets/media/scenic/licensed/xinxing-tianlu-02.jpg",
+    "sourceSha256": "450ab6b0f6401a638380972fe9b22536bf2d9ed179c93e71d57b3e67a792840f",
+    "releaseSha256": "b1c6cc00dcc9937c3e1fdb087ca9ea7dd0352ac1a35fa4e85a237e68fff98b37",
+    "change": "Removed EXIF/XMP metadata segments; JPEG encoded image scan unchanged. Original photo license retained."
+  },
+  {
+    "path": "public/assets/media/scenic/licensed/xinxing-tianlu-03.jpg",
+    "sourceSha256": "f2186407c820606f0fe9e3192b7b7216b9c672353be59dd9e80d317b585e63ed",
+    "releaseSha256": "8699e376fe0fd6599cb8f9103413786f2cd898bd8efc2fcb290cd58082905ae2",
+    "change": "Removed EXIF/XMP metadata segments; JPEG encoded image scan unchanged. Original photo license retained."
+  },
+  {
+    "path": "public/assets/media/scenic/v2/guoen-temple-pkkj-20260527-original.jpg",
+    "sourceSha256": "86b61014a26c5a7ea7c6b62429ef97d22c15021766241cd79449bda0c83e9eb3",
+    "releaseSha256": "7286da5f7153c6b73dd27311d28f4b66416128971e1b7dbafe7d5ea4bfd891b3",
+    "change": "Removed EXIF/XMP metadata segments; JPEG encoded image scan unchanged. Original photo license retained."
+  },
+  {
+    "path": "public/assets/media/scenic/v2/xinxing-tianlu-qiumao-20160326-01-original.jpg",
+    "sourceSha256": "cc37c52cfe6ed6922f69a3e9449551f9b5ad3305e682a2e5f98a6e6b96cb11bb",
+    "releaseSha256": "4277bb93a9ac809db5bc3405cde785f24484c441b3bcdb94870c6f8b0a2290cb",
+    "change": "Removed EXIF/XMP metadata segments; JPEG encoded image scan unchanged. Original photo license retained."
+  }
+]
